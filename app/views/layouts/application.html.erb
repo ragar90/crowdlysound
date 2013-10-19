@@ -4,15 +4,18 @@
   <title>CrwoudlySound</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link href='http://fonts.googleapis.com/css?family=Alex+Brush|Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<div>
-	<%= render :partial => "menu_header" %>
-</div>
+<div id="main_container">
+	<div>
+		<%= render :partial => "menu_header" %>
+	</div>
 
-<%= yield %>
+	<%= yield %>
+</div>
 
 </body>
 </html>

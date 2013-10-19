@@ -43,3 +43,10 @@ gem 'bcrypt-ruby', '~> 3.0.0', :require => "bcrypt"
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :development, :test do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  gem 'railroady'
+end
