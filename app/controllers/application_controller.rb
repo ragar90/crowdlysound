@@ -7,7 +7,10 @@ class ApplicationController < ActionController::Base
 
   def check_musician
   	if session[:musician_id].nil?
+  		@current_musician = nil
   		redirect_to landing_page_path
+  	else
+  		@current_musician = Musician.find(session[:musician_id])
   	end
   end
 

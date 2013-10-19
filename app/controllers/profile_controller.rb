@@ -3,13 +3,10 @@ class ProfileController < ApplicationController
 	before_action :check_current_user, except: [:profile]
 
 	def profile
-		@current_user = false
-
 		if params[:musician_id].nil?
 			@musician = Musician.find(session[:musician_id])
 		else
-			@current_user = true
-			@musician = Musician.fnd(params[:musician_id])
+			@musician = @current_musician
 		end
 	end
 

@@ -9,4 +9,16 @@ class Musician < ActiveRecord::Base
   has_many :bands, foreign_key: :leader_id
   has_many :agrupations
   has_many :band_agrupations, through: :agrupations
+
+  attr_accessor :password
+  
+  before_save :encrypt_password
+  
+  def encrypt_password
+    if password.present?
+      self.salt = BCrypt::Engine.generate_salt
+      self.password_digest = BCrypt::Engine.hash_secret(password, salt)
+    end
+  end
+
 end
