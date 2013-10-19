@@ -12,6 +12,9 @@ class ProfileController < ApplicationController
 
 		@all_genres = Genre.order("name ASC")
 		@musician_genres = @musician.genres
+
+		@followings = @musician.followings
+		@followers = @musician.followers
 	end
 
 	def edit

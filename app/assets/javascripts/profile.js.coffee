@@ -25,9 +25,9 @@ jQuery ->
 
   $("#follow_user").on "click", "a", ->
     follow = $(this).data "follow"
-    user_id = $("#follow_user_id").val()
+    musician_id = $("#follow_musician_id").val()
     $.ajax
       url: "/follow_user"
       type: "get"
-      data: {follow: follow, user_id: user_id}
+      data: {follow: follow, musician_id: musician_id}
       dataType: 'script'

@@ -1,7 +1,7 @@
 <div>
 	<h1><%= @musician.name %></h1>
 
-	<div>
+	<div id="follow_user">
 		<%= render :partial => "follow_user" %>
 	</div>
 
@@ -38,6 +38,22 @@
 			<%= render :partial => "band", :collection => @musician.bands %>
 		</div>
 	</div>	
+
+	<div>
+		<h2>Following</h2>
+
+		<div>
+			<%= render :partial => "musician", :collection => @followings %>
+		</div>
+	</div>
+
+	<div>
+		<h2>Followers</h2>
+
+		<div>
+			<%= render :partial => "musician", :collection => @followers %>
+		</div>
+	</div>
 </div>
 
 <% if @musician.id == @current_musician.id %>
