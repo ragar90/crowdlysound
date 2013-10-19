@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  caster_id: 1
+  song_id: 1
+
+two:
+  caster_id: 1
+  song_id: 1

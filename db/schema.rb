@@ -11,18 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131019010415) do
+ActiveRecord::Schema.define(version: 20131019064518) do
 
   create_table "agrupations", force: true do |t|
-    t.integer  "musician_id"
+    t.integer  "member_id"
     t.integer  "band_id"
+    t.boolean  "is_leader"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "bands", force: true do |t|
     t.string   "name"
-    t.integer  "leader_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "casting_settings", force: true do |t|
+    t.integer  "song_id"
+    t.integer  "filter_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "castings", force: true do |t|
+    t.integer  "caster_id"
+    t.integer  "casting_song_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,6 +54,13 @@ ActiveRecord::Schema.define(version: 20131019010415) do
   create_table "cowriters", force: true do |t|
     t.integer  "coauthor_id"
     t.integer  "coauthored_song_id"
+    t.integer  "casting_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "filter_types", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -99,6 +121,7 @@ ActiveRecord::Schema.define(version: 20131019010415) do
     t.string   "owner_type"
     t.integer  "cover_of_id"
     t.integer  "rock_likes_count"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
