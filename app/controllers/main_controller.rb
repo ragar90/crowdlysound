@@ -6,7 +6,7 @@ class MainController < ApplicationController
   end
 
   def login_as_guest
-  	session[:musician_id] = 0
+  	session[:musician_id] = 1
   	redirect_to root_path
   end
 

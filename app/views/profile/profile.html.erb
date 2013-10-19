@@ -1,0 +1,41 @@
+<div>
+	<h1><%= @musician.name %></h1>
+
+	<div>
+		<h2>Genres</h2>
+
+		<div>
+			<%= render :partial => "genre", :collection => @musician.genres %>
+		</div>
+	</div>	
+
+	<div>
+		<h2>Instruments</h2>
+
+		<div>
+			<%= render :partial => "instrument", :collection => @musician.instruments %>
+		</div>
+	</div>
+
+	<div>
+		<h2>Songs</h2>
+
+		<div>
+			<%= render :partial => "song", :collection => @musician.songs %>
+		</div>
+	</div>
+
+	<div>
+		<h2>Bands</h2>
+
+		<div>
+			<%= render :partial => "band", :collection => @musician.bands %>
+		</div>
+	</div>	
+</div>
+
+<% if @current_user == true %>
+	<div>
+		<%= link_to "Edit", edit_profile_path %>
+	</div>
+<% end %>
