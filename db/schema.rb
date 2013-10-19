@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131019071827) do
+ActiveRecord::Schema.define(version: 20131019223753) do
 
   create_table "agrupations", force: true do |t|
     t.integer  "member_id"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 20131019071827) do
 
   create_table "filter_types", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "follow_users", force: true do |t|
+    t.integer  "user1_id"
+    t.integer  "user2_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

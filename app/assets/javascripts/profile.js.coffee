@@ -22,3 +22,12 @@ jQuery ->
         type: 'post'
         data: {genres: data}
         dataType: 'script'
+
+  $("#follow_user").on "click", "a", ->
+    follow = $(this).data "follow"
+    user_id = $("#follow_user_id").val()
+    $.ajax
+      url: "/follow_user"
+      type: "get"
+      data: {follow: follow, user_id: user_id}
+      dataType: 'script'

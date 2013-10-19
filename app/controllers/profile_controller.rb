@@ -41,6 +41,26 @@ class ProfileController < ApplicationController
 	    render :nothing => true
 	end
 
+	def follow_user
+		action = params[:follow]
+		@musician = Musician.find(params[:musician_id].to_i)
+		@error = false
+
+		if @current_musician.id != @musician.id
+		  if action == "follow"
+		    if !@current_musician.follows_user(@musician)
+		      @current_musician.follow(@musician)
+		    end
+		  elsif action == "unfollow"
+		    if @current_musician.follows_user(@musician)
+		      @current_musician.unfollow(@musician)
+		    end
+		  end
+		else
+		  @error = true
+		end
+	end
+
 	def friends
 	end
 

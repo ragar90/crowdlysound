@@ -1,5 +1,5 @@
 class Musician < ActiveRecord::Base
-  has_many :songs, as: :author
+  has_many :songs, as: :owner
   has_many :cowriters
   has_many :coauthored_songs, through: :cowriters
   has_many :music_tastes
@@ -10,6 +10,12 @@ class Musician < ActiveRecord::Base
   has_many :bands, through: :agrupations
   has_many :castings
   has_many :casting_songs, through: :castings
+  
+  #Associations for follows
+  has_many :fu_followers, :class_name => 'FollowUser', :foreign_key => 'user2_id'
+  has_many :fu_followings, :class_name => 'FollowUser', :foreign_key => 'user1_id'
+  has_many :followers, :through => :fu_followers
+  has_many :followings, :through => :fu_followings
 
   attr_accessor :password
   
@@ -41,6 +47,20 @@ class Musician < ActiveRecord::Base
 
   def leader_of(band_id)
     !Agrupation.where(band_id: band_id, member_id: self.id, is_leader: true).empty?
+  end
+
+  ######################## FOLLOWS
+
+  def follows_user(tmp_user)
+    !followings.where(:id => tmp_user.id).empty?
+  end
+
+  def follow(tmp_user)
+    FollowUser.create!(:user1_id => self.id, :user2_id => tmp_user.id)
+  end
+
+  def unfollow(tmp_user)
+    FollowUser.find_by_user1_id_and_user2_id(self.id, tmp_user.id).destroy!
   end
   
   private
