@@ -6,7 +6,7 @@ class Musician < ActiveRecord::Base
   has_many :genres, through: :music_tastes
   has_many :instrument_skills
   has_many :instruments, through: :instrument_skills
-  has_many :agrupations
+  has_many :agrupations, foreign_key: "member_id"
   has_many :bands, through: :agrupations
   has_many :castings
   has_many :casting_songs, through: :castings

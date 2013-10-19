@@ -1,8 +1,8 @@
 class ProfileController < ApplicationController
 
 	def profile
-		if params[:musician_id].nil?
-			@musician = Musician.find(session[:musician_id])
+		if !params[:musician_id].nil?
+			@musician = Musician.find(params[:musician_id])
 		else
 			@musician = @current_musician
 		end
