@@ -15,9 +15,9 @@ class Musician < ActiveRecord::Base
   
   before_save :encrypt_password
 
-  #Alias for name, for using in json
+  #Alias for email, for using in json
   def value
-    name
+    email
   end
 
   def create_band(band_params)
@@ -29,8 +29,18 @@ class Musician < ActiveRecord::Base
     end
   end
 
-  def self.find_musician(term)
-    where("name LIKE '%#{term}%' OR email LIKE '%#{term}%'")
+  def self.find_musician(term, band_id = 0)
+    if band_id == 0
+      where("name LIKE '%#{term}%' OR email LIKE '%#{term}%'")
+    else
+      band = Band.find(band_id)
+
+      where("(name LIKE '%#{term}%' OR email LIKE '%#{term}%') AND id NOT IN (?)", band.members.collect{ |m| m.id })
+    end
+  end
+
+  def leader_of(band_id)
+    !Agrupation.where(band_id: band_id, member_id: self.id, is_leader: true).empty?
   end
   
   private

@@ -1,27 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div id="band_content">
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @band.name %>
-</p>
+	<p>
+	  <strong>Name:</strong>
+	  <%= @band.name %>
+	</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @band.description %>
-</p>
+	<p>
+	  <strong>Description:</strong>
+	  <%= @band.description %>
+	</p>
 
-<div class="ui-widget">
-  <label for="add_member">New member: </label>
-  <input id="add_member" />
+	<% if @current_musician.leader_of(@band.id) %>
+		<div class="ui-widget" id="new_member_block">
+		  <label for="add_member">New member: </label>
+		  <input id="add_member" data-band="<%= @band.id %>" />
+		  <input type="button" id="add_member_btn" value="Add" />
+		</div>
+	<% end %>
+
+	<div id="band_members">
+		<%= render :partial => "musician", :collection => @band.members %>
+	</div>
+
+	<% if @band.includes_member?(@current_musician.id) %>
+		<%= link_to 'Edit', edit_band_path(@band) %> |
+	<% end %>
+	<%= link_to 'Back', bands_path %>
 </div>
- 
-<div class="ui-widget" style="margin-top: 2em; font-family: Arial;">
-  Result:
-  <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-</div>
-
-<div id="band_members">
-</div>
-
-<%= link_to 'Edit', edit_band_path(@band) %> |
-<%= link_to 'Back', bands_path %>

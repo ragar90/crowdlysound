@@ -1,5 +1,6 @@
 class BandsController < ApplicationController
-  before_action :set_band, only: [:show, :edit, :update, :destroy]
+  before_action :set_band, only: [:show, :edit, :update, :destroy, :add_members, :remove_member]
+  before_action :check_band_owner, only: [:edit, :update, :destroy, :add_members, :remove_member]
 
   # GET /bands
   # GET /bands.json
@@ -64,13 +65,25 @@ class BandsController < ApplicationController
     end
   end
 
+  def add_members
+    members = params[:members].split(",")
+
+    members.map{ |member|
+      @band.add_member(member)
+    }
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_band
       @band = Band.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def check_band_owner
+      if !@band.includes_member?(@current_musician.id)
+        redirect_to bands_url, :status => :moved_permanently
+      end
+    end
+
     def band_params
       params.require(:band).permit(:name, :description)
     end

@@ -19,7 +19,7 @@ class ProfileController < ApplicationController
 	end
 
 	def find_musician    
-		@musicians = Musician.find_musician(params[:term])
+		@musicians = Musician.find_musician(params[:term], params[:band_id])
 	end
 
 	private

@@ -14,6 +14,7 @@ CrwoudlySound::Application.routes.draw do
 
   #Management of bands
   resources :bands
-  get "find_musician" => "profile#find_musician"
+  get "find_musician/:band_id" => "profile#find_musician"
+  post "add_members/:id" => "bands#add_members"
 
 end

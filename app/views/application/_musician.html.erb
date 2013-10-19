@@ -1,0 +1,9 @@
+<div>
+	<%= musician.name %>
+</div>
+
+<div>
+	<% if @current_musician.leader_of(@band.id) %>
+		<%= link_to "Remove from band" %>
+	<% end %>
+</div>
