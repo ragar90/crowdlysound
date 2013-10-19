@@ -6,6 +6,7 @@ class CreateSongs < ActiveRecord::Migration
       t.string :owner_type
       t.integer :cover_of_id
       t.integer :rock_likes_count
+      t.text :description
 
       t.timestamps
     end

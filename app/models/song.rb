@@ -6,4 +6,7 @@ class Song < ActiveRecord::Base
   has_many :genre_tags
   has_many :genres, through: :genre_tags
   has_many :comments , as: :comentable
+  has_many :castings
+  has_many :casters, through: :castings
+  has_one :casting_setting
 end
