@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
   before_action :set_song, only: [:show, :edit, :update, :destroy, :castings, :cover]
-  skip_before_filter :check_musician
+  #skip_before_filter :check_musician
   # GET /songs
   # GET /songs.json
   def index
