@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Applicant</th>
+    <th>Instrument</th>
+    <th>Date</th>
+    <th></th>
+  </tr>
+  <% @castings.each do |casting| %>
+    <tr>
+      <td><%= link_to casting.caster.name.titleize, musician_path(id: casting.caster_id) %></td>
+      <td> <%= casting.instrument.name.titleize %></td>
+      <td> Applied on <%= casting.created_on.strptime("%m-%d-%Y") %></td>
+      <td> <%= link_to "Approve", casting_status_song(casting_id: casting.id, status: 1) %>   <%= link_to "Reject", casting_status_song(casting_id: casting.id, status: 2) %></td>
+    </tr>
+  <% end %>
+</table>

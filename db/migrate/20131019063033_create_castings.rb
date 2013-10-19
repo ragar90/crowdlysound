@@ -4,6 +4,7 @@ class CreateCastings < ActiveRecord::Migration
       t.integer :caster_id
       t.integer :casting_song_id
       t.integer :status, default: 3
+      t.integer :instrument_id
 
       t.timestamps
     end

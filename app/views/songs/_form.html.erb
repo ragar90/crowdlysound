@@ -15,15 +15,30 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
-  <% if @song.new_record? %>
-    ......
-    <div class = "input instrument-tags">
-      <% @instruments.each do |instrument| %>
-        <%= instrument.name.titleize %>
-        <%= hidden_field "instrument_tags[]", :instrument_id, instrument.id %>
-        <%= label "instrument_tags[]", :writen_by_me %> : <%= check_box "instrument_tags[]", :writen_by_me, false %>
-      <% end %>
-    </div>
+
+  <div class = "input">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class = "input instrument-tags">
+    <%= f.fields_for :instrument_tags do |builder| %>
+      <h1> <%= builder.object.instrument.name.titleize %></h1>
+      <%= builder.hidden_field :id %>
+      <%= builder.hidden_field :instrument_id %>
+      <%= builder.label :written_by_me %> : <%= builder.check_box :written_by_me %>
+    <% end %>
+  </div>
+
+  <div class = "input genres-tags">
+    <%= f.label :genre_ids, "Genres" %> : <%= f.collection_check_boxes :genre_ids, @genres, :id, :name %>
+  </div>
+
+  <% if params[:band] == "true" %>
+      <div class = "input casting-settings">
+        <h2>Casting Settings</h2>
+        <%=label :casting_settings, :filter_type_id, "Filter Type" %> : <%= collection_select(:casting_settings, :filter_type_id, @filter_types, :id, :title_name) %>
+      </div>
   <% end %>
 
   <div class="actions">

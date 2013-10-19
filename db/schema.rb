@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20131019071827) do
     t.integer  "caster_id"
     t.integer  "casting_song_id"
     t.integer  "status",          default: 3
+    t.integer  "instrument_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,7 +90,7 @@ ActiveRecord::Schema.define(version: 20131019071827) do
   create_table "instrument_tags", force: true do |t|
     t.integer  "instrument_id"
     t.integer  "song_id"
-    t.boolean  "writen_by_me"
+    t.boolean  "written_by_me"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
