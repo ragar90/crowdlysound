@@ -14,15 +14,30 @@
 ActiveRecord::Schema.define(version: 20131019063903) do
 
   create_table "agrupations", force: true do |t|
-    t.integer  "musician_id"
+    t.integer  "member_id"
     t.integer  "band_id"
+    t.boolean  "is_leader"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "bands", force: true do |t|
     t.string   "name"
-    t.integer  "leader_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "casting_settings", force: true do |t|
+    t.integer  "song_id"
+    t.integer  "filter_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "castings", force: true do |t|
+    t.integer  "caster_id"
+    t.integer  "casting_song_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -100,6 +115,7 @@ ActiveRecord::Schema.define(version: 20131019063903) do
     t.string   "owner_type"
     t.integer  "cover_of_id"
     t.integer  "rock_likes_count"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
