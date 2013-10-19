@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131019063903) do
+ActiveRecord::Schema.define(version: 20131019064518) do
 
   create_table "agrupations", force: true do |t|
     t.integer  "member_id"
@@ -52,8 +52,15 @@ ActiveRecord::Schema.define(version: 20131019063903) do
   end
 
   create_table "cowriters", force: true do |t|
-    t.integer  "musician_id"
-    t.integer  "song_id"
+    t.integer  "coauthor_id"
+    t.integer  "coauthored_song_id"
+    t.integer  "casting_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "filter_types", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

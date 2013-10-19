@@ -1,7 +1,5 @@
 class ProfileController < ApplicationController
 
-	before_action :check_current_user, except: [:profile]
-
 	def profile
 		if params[:musician_id].nil?
 			@musician = Musician.find(session[:musician_id])

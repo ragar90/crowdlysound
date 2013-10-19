@@ -18,6 +18,12 @@ if Genre.count == 0
 	Genre.create(name: "Gospel")
 end
 
+if Band.count == 0
+	for i in 1..11
+		band = Band.new(name: "Band #{i}")
+	end
+end
+
 if Musician.count == 0
 	guest = Musician.new(email: "guest@example.com", name: "Guest User", password: "welcome")
 	guest.save
@@ -32,11 +38,14 @@ if Musician.count == 0
 	for i in 1..50
 		musician = Musician.new(email: "musician#{i}@example.com", name: "Musician #{i}", password: "welcome")
 		musician.save
-	end
-end
 
-if Band.count == 0
-	for i in 1..10
-		band = Band.new(name: "Band #{i}")
+		band_id = i%10 == 0 ? 10 : i%10
+		Agrupation.create(member_id: musician.id, band_id: band_id, is_leader: i%5 == 0)
 	end
+
+	Agrupation.create(member_id: 1, band_id: 3, is_leader: false)
+	Agrupation.create(member_id: 1, band_id: 11, is_leader: true)
+	Agrupation.create(member_id: 7, band_id: 11, is_leader: false)
+	Agrupation.create(member_id: 17, band_id: 11, is_leader: false)
+	Agrupation.create(member_id: 27, band_id: 11, is_leader: false)
 end
