@@ -17,8 +17,13 @@
         <td><%= band.name %></td>
         <td><%= band.description %></td>
         <td><%= link_to 'Show', band %></td>
-        <td><%= link_to 'Edit', edit_band_path(band) %></td>
-        <td><%= link_to 'Destroy', band, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @current_musician.leader_of(band.id) %>
+          <td><%= link_to 'Edit', edit_band_path(band) %></td>
+          <td><%= link_to 'Remove', band, method: :delete, data: { confirm: 'Are you sure you want to remove this band?' } %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

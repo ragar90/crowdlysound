@@ -13,6 +13,11 @@ class Band < ActiveRecord::Base
   	end
   end
 
+  def remove_member(musician_id)
+  	agrupation = Agrupation.where(band_id: self.id, member_id: musician_id).first rescue nil
+  	agrupation.destroy!
+  end
+
   def includes_member?(musician_id)
   	!members.where(:id => musician_id).empty?
   end

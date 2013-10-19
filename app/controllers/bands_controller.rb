@@ -73,13 +73,17 @@ class BandsController < ApplicationController
     }
   end
 
+  def remove_member
+    @band.remove_member(params[:member_id])
+  end
+
   private
     def set_band
       @band = Band.find(params[:id])
     end
 
     def check_band_owner
-      if !@band.includes_member?(@current_musician.id)
+      if !@band.includes_member?(@current_musician.id) || !@current_musician.leader_of(@band.id)
         redirect_to bands_url, :status => :moved_permanently
       end
     end

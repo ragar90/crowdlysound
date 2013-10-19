@@ -6,6 +6,12 @@ class ProfileController < ApplicationController
 		else
 			@musician = @current_musician
 		end
+
+		@all_instruments = Instrument.order("name ASC")
+		@musician_instruments = @musician.instruments
+
+		@all_genres = Genre.order("name ASC")
+		@musician_genres = @musician.genres
 	end
 
 	def edit
@@ -13,6 +19,26 @@ class ProfileController < ApplicationController
 	end
 
 	def update
+	end
+
+	def save_instruments
+	    @current_musician.instrument_skills.destroy_all
+
+	    params[:instruments].map{ |instrument_id| 
+	      InstrumentSkill.create!(musician_id: @current_musician.id, instrument_id: instrument_id)
+	    }
+
+	    render :nothing => true
+	end
+
+	def save_genres
+	    @current_musician.music_tastes.destroy_all
+
+	    params[:genres].map{ |genre_id| 
+	      MusicTaste.create!(musician_id: @current_musician.id, genre_id: genre_id)
+	    }
+
+	    render :nothing => true
 	end
 
 	def friends
