@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  instrument_id: 1
+  song_id: 1
+  writen_by_me: false
+
+two:
+  instrument_id: 1
+  song_id: 1
+  writen_by_me: false

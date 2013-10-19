@@ -1,0 +1,1 @@
+CASTING_STATUS = {:"1"=> "Approved", :"2" => "Rejected", :"3" => "Pending"}
