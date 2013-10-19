@@ -18,6 +18,10 @@ class ProfileController < ApplicationController
 	def friends
 	end
 
+	def find_musician    
+		@musicians = Musician.find_musician(params[:term])
+	end
+
 	private
 		def user_params
 		  params.require(:user).permit(

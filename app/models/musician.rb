@@ -14,12 +14,10 @@ class Musician < ActiveRecord::Base
   attr_accessor :password
   
   before_save :encrypt_password
-  
-  def encrypt_password
-    if password.present?
-      self.salt = BCrypt::Engine.generate_salt
-      self.password_digest = BCrypt::Engine.hash_secret(password, salt)
-    end
+
+  #Alias for name, for using in json
+  def value
+    name
   end
 
   def create_band(band_params)
@@ -30,5 +28,17 @@ class Musician < ActiveRecord::Base
       #Error Messages
     end
   end
+
+  def self.find_musician(term)
+    where("name LIKE '%#{term}%' OR email LIKE '%#{term}%'")
+  end
+  
+  private
+    def encrypt_password
+      if password.present?
+        self.salt = BCrypt::Engine.generate_salt
+        self.password_digest = BCrypt::Engine.hash_secret(password, salt)
+      end
+    end
 
 end

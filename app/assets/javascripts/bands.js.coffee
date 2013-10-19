@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+jQuery ->  
+  log = (message) ->
+  	$("<div>").text(message).prependTo "#log"
+  	$("#log").scrollTop 0
+
+  $("#add_member").autocomplete
+    source: "/find_musician"
+    minLength: 4
+    select: (event, ui) ->
+      log (if ui.item then "Selected: " + ui.item.value + " aka " + ui.item.id else "Nothing selected, input was " + @value)

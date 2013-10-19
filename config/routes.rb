@@ -12,6 +12,8 @@ CrwoudlySound::Application.routes.draw do
   put "update_profile" => "profile#update", as: :update_profile
   get "friends/:type" => "profile#friends", as: :friends
 
+  #Management of bands
   resources :bands
+  get "find_musician" => "profile#find_musician"
 
 end
