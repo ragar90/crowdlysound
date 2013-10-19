@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="main_container">
-
+	<%= render :partial => "header_page" if controller.action_name != "landing_page"%>
 	<%= yield %>
 </div>
 </body>
