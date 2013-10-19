@@ -1,0 +1,17 @@
+<%= form_for([@song,@music_sheet]) do |f| %>
+  <% if @music_sheet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@music_sheet.errors.count, "error") %> prohibited this music_sheet from being saved:</h2>
+
+      <ul>
+      <% @music_sheet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

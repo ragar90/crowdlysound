@@ -3,7 +3,7 @@ class CreateInstrumentTags < ActiveRecord::Migration
     create_table :instrument_tags do |t|
       t.integer :instrument_id
       t.integer :song_id
-      t.boolean :writen_by_me
+      t.boolean :written_by_me
 
       t.timestamps
     end
