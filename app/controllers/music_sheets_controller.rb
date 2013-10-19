@@ -1,7 +1,7 @@
 class MusicSheetsController < ApplicationController
   before_action :set_song
   before_action :set_music_sheet, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :check_musician
+  #skip_before_filter :check_musician
 
   # GET /music_sheets
   # GET /music_sheets.json
