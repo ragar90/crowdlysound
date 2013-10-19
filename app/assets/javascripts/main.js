@@ -1,5 +1,13 @@
 $(document).ready(function(){
 	resizeBackground();
+	var pre = ('animation');
+	pre.replace(/([A-Z])/g, function(str,m1){ return '-' + m1.toLowerCase(); }).replace(/^ms-/,'-ms-');
+
+	for(var i=0;i< $('ul#music_notes li').length;i++) {
+	    var x = $('ul#music_notes li')[i];
+	  $(x).css(pre,'music 3s '+i+'00ms  ease-in-out both infinite');
+	  $(x).addClass("element_"+i)
+	}
 });
 
 $(window).resize(function(){
