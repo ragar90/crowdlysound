@@ -212,9 +212,16 @@ div.landing_page_master{
 		}
 	}
 }
-
+div#header.index_page{
+	margin-top:-70px;
+	~ div.white_space_header{
+		width:100%;
+		//height:0px;
+	}
+}
 div#header{
 	background:#FFF;
+	@include animation;
 	@include boxShadow(0px 0px 12px, #444);
 	position:relative;
 	background: #fcfeff; /* Old browsers */
