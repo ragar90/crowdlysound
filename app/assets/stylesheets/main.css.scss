@@ -1,3 +1,277 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "mixin.css.scss";
+
+
+div.main_header{
+	width:100%;
+	position:relative;
+	background:#333333;
+	//min-height:200px;
+	position:fixed;
+	top:40px;
+	z-index:20;
+	div.notes_container{
+		position:absolute;
+		width:100%;
+		height:100%;
+		top:0;
+		left:0;
+	}	
+	ul#music_notes{
+		position:relative;
+		width:100%;
+		min-height:235px;
+		overflow:hidden;
+		li {
+			position:absolute;
+		    display: block;
+		    float: left;
+		    font-size: 4em;
+		    color: #aaa;
+		    text-shadow: -1px -1px 0 white, 1px 1px 0 black;
+		    font-family: sans-serif;
+		}
+		li.element_1 {
+      		right: 5%;
+			top: 55%; 
+  		}
+    	li.element_2 {
+      		right: 40%;
+      		top: 80%; 
+      	}
+    	li.element_3 {
+      		right: 30%;
+      		top: -5%; 
+      	}
+    	li.element_4 {
+      		right: 57%;
+      		top: 4%; 
+      	}
+    	li.element_5 {
+      		right: 50%;
+      		top: 48%; 
+      	}
+    	li.element_6 {
+      		right: 76%;
+      		top: 54%; 
+      	}
+    	li.element_7 {
+      		right: 89%;
+			top: 9%;
+      	}
+    	li.element_8 {
+      		right: 66%;
+			top: -20%;
+      	}
+    	li.element_9 {
+      		right: 20%;
+			top: 9%;
+      	}
+    	li.element_10 {
+      		right: 89%;
+      		top: 58%; 
+      	}
+    	li.element_11 {
+      		right: 20%;
+      		top: 73%; 
+      	}
+    	li.element_12 {
+      		right: 60%;
+      		top: 60%; 
+      	}
+    	li.element_13 {
+      		right: 0%;
+      		top: 0%; 
+      	}
+    	li.element_14 {
+      		right: 24%;
+			top: 117%;
+      	}
+    	li.element_15 {
+      		right: 10%;
+      		top: 40%; 
+      	}
+    	li.element_16 {
+      		right: 80%;
+      		top: 22%; 
+      	}
+    	li.element_17 {
+      		right: 42%;
+      		top: 12%; 
+      	}
+    	li.element_18 {
+      		right: 15%;
+      		top: 2%; 
+      	}
+    	li.element_19 {
+      		right: 95%;
+			top: 67%;
+      	}
+		.anim {
+		    animation: music 1s ease-in-out both infinite;
+		}
+	}
+	div.center_page{
+		padding:25px 0;
+		text-align:center;
+		a.links_circles{
+			margin:20px 30px;
+			@include animation;
+			img{
+				width:20%;
+				@include animation;
+			}
+			span{
+				padding:25px;
+				//@include boderRadius(50%);
+				//background:#FFF;
+				//border:2px solid #000;
+			}
+		}
+		a.links_circles:hover{
+			img{
+			@include transformAnimation(1.1);
+			}
+		}
+	}
+}//div.main_header
+div.space_index{
+	height:235px;
+	width:100%;
+	display:block;
+	position:relative;
+}
+div.panels_container{
+	position:relative;
+}
+div.panels_user_index{
+	position:relative;
+	min-height:900px;
+	z-index:30;
+	background:#FFF;
+	padding:20px 0;
+	div.left_panel{
+		width:50%;
+		float:left;
+		ul.notice{
+			li.news:first-child {
+					border-top: none;
+				}
+			li{
+				padding:1em 45px 1em 0;
+				overflow: hidden;
+				position: relative;
+				border-top: 1px solid #f1f1f1;
+				div.alert_item{
+					font-size:13px;
+					font-weight:lighter;
+					a{
+						color: #4183c4;
+					}
+				}
+			}
+		}
+	}
+	div.right_panel{
+		width:40%;
+		float:right;
+	}
+}
+
+
+div.tab_container{
+	position:relative;
+	width:99%;
+	margin:10px 0;
+	div.tab_header{
+		background: #ffffff; /* Old browsers */
+		background: -moz-linear-gradient(top,  #ffffff 2%, #e8e8e8 50%, #e8e8e8 98%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,#ffffff), color-stop(50%,#e8e8e8), color-stop(98%,#e8e8e8)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  #ffffff 2%,#e8e8e8 50%,#e8e8e8 98%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  #ffffff 2%,#e8e8e8 50%,#e8e8e8 98%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #ffffff 2%,#e8e8e8 50%,#e8e8e8 98%); /* IE10+ */
+		background: linear-gradient(to bottom,  #ffffff 2%,#e8e8e8 50%,#e8e8e8 98%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e8e8e8',GradientType=0 ); /* IE6-9 */
+		@include rounded(4px 4px 0 0);
+		border:1px solid #AAA;
+		padding:4px;
+		h1.title{
+			font-size:15px;
+			color:#444;
+			font-weight:bold;
+		}
+	}
+	div.tab_items{
+		padding:10px;
+		border:1px solid #AAA;
+		border-top:none;
+		@include rounded(0 0 4px 4px);
+	}
+}
+@keyframes "music" {
+	0%,100% {
+	-webkit-transform: translate3d(0,-10px,0);
+	-moz-transform: translate3d(0,-10px,0);
+	-o-transform: translate3d(0,-10px,0);
+	-ms-transform: translate3d(0,-10px,0);
+	transform: translate3d(0,-10px,0);
+}
+ 50% {
+    -webkit-transform: translate3d(0,10px,0);
+   	-moz-transform: translate3d(0,10px,0);
+   	-o-transform: translate3d(0,10px,0);
+   	-ms-transform: translate3d(0,10px,0);
+   	transform: translate3d(0,10px,0);
+ }
+
+}
+
+@-moz-keyframes music {
+	0%,100% {
+	-moz-transform: translate3d(0,-10px,0);
+	transform: translate3d(0,-10px,0);
+}
+ 50% {
+   -moz-transform: translate3d(0,10px,0);
+   transform: translate3d(0,10px,0);
+ }
+
+}
+
+@-webkit-keyframes "music" {
+	0%,100% {
+	-webkit-transform: translate3d(0,-10px,0);
+	transform: translate3d(0,-10px,0);
+}
+ 50% {
+   -webkit-transform: translate3d(0,10px,0);
+   transform: translate3d(0,10px,0);
+ }
+
+}
+
+@-ms-keyframes "music" {
+	0%,100% {
+	-ms-transform: translate3d(0,-10px,0);
+	transform: translate3d(0,-10px,0);
+}
+ 50% {
+   -ms-transform: translate3d(0,10px,0);
+   transform: translate3d(0,10px,0);
+ }
+
+}
+
+@-o-keyframes "music" {
+	0%,100% {
+	-o-transform: translate3d(0,-10px,0);
+	transform: translate3d(0,-10px,0);
+}
+ 50% {
+   -o-transform: translate3d(0,10px,0);
+   transform: translate3d(0,10px,0);
+ }
+
+}
