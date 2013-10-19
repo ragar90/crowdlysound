@@ -1,0 +1,32 @@
+<%= form_for(@song) do |f| %>
+  <% if @song.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
+      <ul>
+      <% @song.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = "input">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <% if @song.new_record? %>
+    ......
+    <div class = "input instrument-tags">
+      <% @instruments.each do |instrument| %>
+        <%= instrument.name.titleize %>
+        <%= hidden_field "instrument_tags[]", :instrument_id, instrument.id %>
+        <%= label "instrument_tags[]", :writen_by_me %> : <%= check_box "instrument_tags[]", :writen_by_me, false %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
