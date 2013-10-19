@@ -9,4 +9,6 @@ class Song < ActiveRecord::Base
   has_many :castings
   has_many :casters, through: :castings
   has_one :casting_setting
+  has_many :intrument_tags
+  has_many :instrument, through: :intrument_tags
 end

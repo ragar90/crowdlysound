@@ -5,4 +5,13 @@ CrwoudlySound::Application.routes.draw do
 
   root 'main#index'
 
+  resources :songs do
+    collection do
+      get "castings" => "songs#castings", as: :castings
+    end
+    member do
+      put "casting/:casting_id/status/:satus" => "songs#change_casting_status", as: :casting_status
+    end
+  end
+
 end

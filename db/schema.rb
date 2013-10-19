@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131019064518) do
+ActiveRecord::Schema.define(version: 20131019071827) do
 
   create_table "agrupations", force: true do |t|
     t.integer  "member_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20131019064518) do
   create_table "castings", force: true do |t|
     t.integer  "caster_id"
     t.integer  "casting_song_id"
+    t.integer  "status",          default: 3
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,6 +82,14 @@ ActiveRecord::Schema.define(version: 20131019064518) do
   create_table "instrument_skills", force: true do |t|
     t.integer  "musician_id"
     t.integer  "instrument_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "instrument_tags", force: true do |t|
+    t.integer  "instrument_id"
+    t.integer  "song_id"
+    t.boolean  "writen_by_me"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
