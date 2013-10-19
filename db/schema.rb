@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20131019010415) do
   end
 
   create_table "cowriters", force: true do |t|
-    t.integer  "musician_id"
-    t.integer  "song_id"
+    t.integer  "coauthor_id"
+    t.integer  "coauthored_song_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
