@@ -17,7 +17,7 @@
     <div class = "composer-toolbar">
       <%= render partial: "composer_toolbar" %>
     </div>
-    <div class="vex-tabdiv music-sheet-editor" width=700 scale=1.0 editor="true" editor_width=720 editor_height=220><%= @music_sheet.notes %></div>
+    <div id= "composer" class="vex-tabdiv music-sheet-editor" width=700 scale=1.0 editor="true" editor_width=720 editor_height=220><%= @music_sheet.notes %></div>
   </div>
 <div class="actions">
     <%= f.submit %>

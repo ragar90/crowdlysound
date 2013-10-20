@@ -14,6 +14,7 @@ class Song < ActiveRecord::Base
   has_many :instruments, through: :instrument_tags
   has_many :rocks, :as => :content
   accepts_nested_attributes_for :instrument_tags
+  scope :for_castings, -> { joins(instrument_tags: :instrument).where("instrument_tags.written_by_me = ?", false).select("instrument_tags.instrument_id as instrument_id, instruments.name as instrument_name,songs.*").order("created_by desc") }
 
   def clean_written_instrument_dependency
     instrument_ids = self.instrument_tags.group_by{|tag| tag.written_by_me ? :written : :casting}

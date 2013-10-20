@@ -1,0 +1,23 @@
+<ul class = "casting-oppotunities-list">
+  <% @applyable_songs.each do |song_details , requirements| %>
+    <li class = "casting-oppotunity">
+      <%= song_details[0] %>
+      created by: <%= song_details[1] %>
+      <h2>Instruments Required</h2>
+      <ul>
+        <% requirements.each do |song| %>
+          <li>
+            <p> 
+              <%= song.instrument_name.titleize %>
+              <% if @applications[song.id].map{|casting| casting.instrument_id}.includes?(song.instrument_id)  %>
+                <h2>You have already apply to this casting</h2>
+              <% else %>
+                <span><%= link_to "Apply", apply_casting_path(song_id: song.id, :instrument_id: song.instrument_id), method: :post %></span> 
+              <% end %>
+            </p> 
+          </li>
+        <% end %>
+      </ul>
+    </li>    
+  <% end %>
+</ul> 
