@@ -3,6 +3,7 @@ if FilterType.count == 0
   	FilterType.create( name: "genre")
   	FilterType.create( name: "both")
   	FilterType.create( name: "none")
+end
 
 if Instrument.count == 0
 	Instrument.create!(name: "Guitar")
@@ -55,5 +56,4 @@ if Musician.count == 0
 	Agrupation.create!(member_id: 7, band_id: 11, is_leader: false)
 	Agrupation.create!(member_id: 17, band_id: 11, is_leader: false)
 	Agrupation.create!(member_id: 27, band_id: 11, is_leader: false)
-
 end
