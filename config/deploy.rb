@@ -32,7 +32,7 @@ require 'bundler/capistrano'
 #############################################
 
 GITHUB_REPOSITORY_NAME = 'r13-team-431'
-LINODE_SERVER_HOSTNAME = 'r13-team-431'
+LINODE_SERVER_HOSTNAME = '212.71.239.128'
 
 #############################################
 #############################################
