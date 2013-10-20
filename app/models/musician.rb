@@ -46,7 +46,7 @@ class Musician < ActiveRecord::Base
   def is_guest_user
     is_guest
   end
-
+  
   def self.find_musician(term, band_id = 0)
     if band_id == 0
       where("name LIKE '%#{term}%' OR email LIKE '%#{term}%'")
@@ -88,9 +88,8 @@ class Musician < ActiveRecord::Base
 
   ######################## PERMISSIONS
   def can_edit_music_sheet?(music_sheet)
-    cowriter = self.cowriters.where(coauthored_song_id: song.id).first
-    #return can_edit_song?(music_sheet.song) && cowriter.instrument_id == music_sheet.instrument_id
-    return can_edit_song?(music_sheet.song)
+    cowriter = self.cowriters.where(coauthored_song_id: music_sheet.song.id).first
+    return (can_edit_song?(music_sheet.song) and cowriter.instrument_id == music_sheet.instrument_id)
   end
 
   def can_edit_song?(song)

@@ -11,13 +11,21 @@
     </div>
   <% end %>
   <h1> <%= @music_sheet.instrument.name.titleize %></h1>
-  <%= f.text_area :notes, style: "display:hidden" %>
+  <%= f.hidden_field :notes, style: "display:hidden" %>
 
-  <div class="vex-tabdiv" width=700 scale=1.0 editor="true" editor_width=720 editor_height=220>
-    <%= @music_sheet.notes %>
+  <div class = "vextab-composer">
+    <div class = "composer-toolbar">
+      <%= render partial: "composer_toolbar" %>
+    </div>
+    <div class="vex-tabdiv music-sheet-editor" width=700 scale=1.0 editor="true" editor_width=720 editor_height=220><%= @music_sheet.notes %></div>
   </div>
-
-  <div class="actions">
+<div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+<h1>For more information About the markup language visit <%= link_to "The VexTab Tutorial", "http://vexflow.com/vextab/tutorial.html", target: :blank%> </h1>
+<%= content_for :vextab do %>
+  <%= javascript_include_tag "vextab/vexflow-min" %>
+  <%= javascript_include_tag "vextab/underscore-min" %>
+  <%= javascript_include_tag "vextab/tabdiv-min" %>
 <% end %>
