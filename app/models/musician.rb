@@ -136,6 +136,17 @@ class Musician < ActiveRecord::Base
   end
 
   def make_search(value)
+    fvalue = "%#{value}%"
+    songs = Song.where("songs.name LIKE ? OR songs.description LIKE ? OR genres.name LIKE ? OR instruments.name LIKE ?", fvalue, fvalue, fvalue, fvalue).joins(:genres, :instruments)
+    bands = Band.where("name LIKE ? OR description LIKE ?", fvalue, fvalue)
+    musicians = Musician.where("name LIKE ? OR email LIKE ?", fvalue, fvalue)
+
+    elements = []
+    songs.map{ |item| elements << build_search_result(item, 1) }    
+    bands.map{ |item| elements << build_search_result(item, 2) }   
+    musicians.map{ |item| elements << build_search_result(item, 3) } 
+
+    elements.sort! { |a, b|  b[:updated] <=> a[:updated] }  
   end
   
   private
@@ -159,6 +170,17 @@ class Musician < ActiveRecord::Base
         return {title: "New updates in #{item.song.name} of #{item.song.owner.name}", path: "/song/#{item.song_id}", message: "The music sheet for #{item.instrument.name} has been updated #{additional_message}", updated: item.updated_at}
       when 4
         return {title: "A new song is born", path: "/songs/#{item.id}", message: "Check for #{item.name} of #{item.owner.name} and give your appreciations!", updated: item.updated_at}
+      end
+    end
+
+    def build_search_result(item, kind)
+      case kind
+      when 1
+        return {title: item.name, path: "/songs/#{item.id}", updated: item.updated_at}
+      when 2
+        return {title: item.name, path: "/bands/#{item.id}", updated: item.updated_at}
+      when 3
+        return {title: item.name, path: "/profile/#{item.id}", updated: item.updated_at}
       end
     end
 

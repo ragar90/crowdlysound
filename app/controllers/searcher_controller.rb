@@ -1,8 +1,9 @@
 class SearcherController < ApplicationController
   
   def index
-  	if !params[:search].nil?
-  		@current_musician.make_search(params[:search])
+  	@results = []
+  	if !params[:value].nil?
+  		@results = @current_musician.make_search(params[:value])
   	end
   end
 
