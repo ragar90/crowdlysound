@@ -488,3 +488,31 @@ div.tab-container{
   margin-top: 20px;
   margin-bottom: 20px;
 }
+div.composer-toolbar{
+  input[type="number"]{
+    width: 50px;
+  }
+  .create_button{
+    padding: 8px 10px;
+  }
+  .composer-input{
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+}
+div.casting-oppotunities-list{
+  li{
+    display: block;
+    list-style-type: none;
+    ul.casting-requirements{
+      li{list-style-type: circle;}
+    }
+  }
+}
+h1.simple_title{
+  a{
+    &:hover{text-decoration:underline}
+    &:visited{text-decoration:underline}
+    &:active{text-decoration:underline}
+  }
+}
