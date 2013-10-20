@@ -13,7 +13,23 @@ $(document).ready(function(){
 $(window).resize(function(){
 	resizeBackground();
 })
+ $(window).scroll(function () {
+ 	//if ($("div#header").hasClass("index_page")) {
+		console.log(window.pageYOffset); 
+		if (window.pageYOffset > 220) {
+			$("div#header").removeClass("index_page")
+		}else if (window.pageYOffset < 219) {
+			$("div#header").addClass("index_page")
+		}else if (window.pageYOffset < 0) {
 
+		}
+ 	//};
+    // if (window.pageYOffset > 225) {
+    //     $('.previewElement').animate({'top':(window.pageYOffset - 225)},20);
+    // }else{
+    //     $('.previewElement').animate({top:0},20);
+    // }
+});
 function resizeBackground(){
 	width_page = $(window).width();
 	heigth_page = $(window).height();

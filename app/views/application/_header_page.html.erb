@@ -1,4 +1,7 @@
-<div id="header">
+<% index_page = (controller.controller_name == "main" and controller.action_name == "index") ? "index_page" : ""%>
+
+
+<div id="header" class="<%= index_page%>">
 	<div class="center_page">
 		<%= link_to "Crwoudly Sound", root_path, :id => "page_logo" %>
 		<ul id="menu_items">
@@ -26,4 +29,6 @@
 	
 <div class="clear"></div>
 </div>
-<div class="white_space_header"></div>
+<% if (controller.controller_name == "main" and controller.action_name == "index") %>
+<!-- <div class="white_space_header"></div> -->
+<% end -%>

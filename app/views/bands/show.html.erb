@@ -1,0 +1,34 @@
+<div id="band_content">
+	<p id="notice"><%= notice %></p>
+
+	<p>
+	  <strong>Name:</strong>
+	  <%= @band.name %>
+	</p>
+
+	<p>
+	  <strong>Description:</strong>
+	  <%= @band.description %>
+	</p>
+
+	<div id="follow_band">
+		<%= render :partial => "follow_band" %>
+	</div>
+
+	<% if @current_musician.leader_of(@band.id) %>
+		<div class="ui-widget" id="new_member_block">
+		  <label for="add_member">New member: </label>
+		  <input id="add_member" data-band="<%= @band.id %>" />
+		  <input type="button" id="add_member_btn" value="Add" />
+		</div>
+	<% end %>
+
+	<div id="band_members">
+		<%= render :partial => "musician", :collection => @band.members %>
+	</div>
+
+	<% if @band.includes_member?(@current_musician.id) && @current_musician.leader_of(@band.id) %>
+		<%= link_to 'Edit', edit_band_path(@band) %> |
+	<% end %>
+	<%= link_to 'Back', bands_path %>
+</div>

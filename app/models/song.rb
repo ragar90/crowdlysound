@@ -1,5 +1,5 @@
 class Song < ActiveRecord::Base
-  belongs_to :author,polymorphic: true
+  belongs_to :owner, polymorphic: true
   has_many :cowriters
   has_many :coauthors, through: :cowriters
   has_many :music_sheets
@@ -50,4 +50,5 @@ class Song < ActiveRecord::Base
       end
     end
   end
+  
 end
