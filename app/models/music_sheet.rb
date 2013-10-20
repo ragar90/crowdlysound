@@ -18,6 +18,6 @@ class MusicSheet < ActiveRecord::Base
           clef = "clef=treble"
       end
     end
-    self.notes = "tabstave notation=true #{clef}\n notes" 
+    self.notes = "tabstave notation=true #{clef}" 
   end
 end
