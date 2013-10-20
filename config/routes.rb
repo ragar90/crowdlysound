@@ -44,7 +44,6 @@ CrwoudlySound::Application.routes.draw do
       post "cast" => "songs#cast", as: :cast
       delete "remove_cowriter/:coauthor_id/for/:instrument_id" => "songs#remove_cowriter", as: :remove_cowriter
       put "rock" => "songs#rock", as: :rock
-      get "castings" => "songs#castings", as: :castings
     end
 
     resources :music_sheets, only: [:index, :edit, :update, :show] do
