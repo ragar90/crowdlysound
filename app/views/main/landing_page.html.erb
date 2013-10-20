@@ -1,6 +1,6 @@
 <div class="landing_page_master">
 	<div class="image_background"></div>
-	<div class="what_is_this">
+	<div class="what_is_this" style="cursor: pointer;" onclick="window.location.href='<%= what_is_crowdly_sound_path %>'">
 		What is Crowdly Sound?
 	</div>
 
@@ -11,7 +11,7 @@
 			<%= image_tag "logo.png", :class => "logo_landing" %>
 			<p class="sub_title">Creating music around the world</p>
 			<div class="inputs">
-				<%= link_to "Login", "javascript:void" %> <%= link_to "Login as Guest", login_as_guest_path %>
+				<%= link_to "Login", "javascript:alert('Coming soon!')" %> <%= link_to "Login as Guest", login_as_guest_path %>
 			</div>
 		</div>
 		
@@ -21,4 +21,3 @@
 		Copyright &copy; <%= Time.now.year %> crwoudlysound.com | All rights reserved. | Developed by <%= link_to "Elev.it", "javascript:;"%>
 	</div>
 </div>
-<script src="http://s0.railsrumble.com/banner.js" type="text/javascript"></script>

@@ -1,5 +1,5 @@
 jQuery ->  
-  $("#instruments").bind("mousedown", (e) ->
+  $("#instruments.clickiable_instrument").bind("mousedown", (e) ->
     e.metaKey = true
   ).selectable stop: ->
       data = []
@@ -11,7 +11,7 @@ jQuery ->
         data: {instruments: data}
         dataType: 'script'
 
-  $("#genres").bind("mousedown", (e) ->
+  $("#genres.clickiable_genres").bind("mousedown", (e) ->
     e.metaKey = true
   ).selectable stop: ->
       data = []

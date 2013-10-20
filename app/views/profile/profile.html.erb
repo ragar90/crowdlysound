@@ -43,10 +43,11 @@
 			<div>
 			<h2 class="title">Genres</h2>
 
-		<% page_genres = @musician.id == @current_musician.id ? "clickiable_genres" : "" %>
-		<% page_instrument = @musician.id == @current_musician.id ? "clickiable_instrument" : "" %>
+				<% page_genres = @musician.id == @current_musician.id ? "clickiable_genres" : "" %>
+				<% page_instrument = @musician.id == @current_musician.id ? "clickiable_instrument" : "" %>
+				
 				<div id="genres" class="options_element <%=page_genres%>">
-					<%= render :partial => "genre", :collection => @all_genres %>
+					<%= render :partial => "genre", :collection => @all_genres, :locals => {special_class: page_genres} %>
 					<div class="clear"></div>
 				</div>
 				<%#= @all_genres.inspect %>

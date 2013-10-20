@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
   		@current_musician = nil
   		redirect_to landing_page_path
   	else
-  		@current_musician = Musician.find(session[:musician_id])
+  		@current_musician = Musician.find(session[:musician_id]) rescue nil
+      if @current_musician == nil
+        session[:musician_id] = nil
+        redirect_to landing_page_path
+      end
   	end
   end
 
