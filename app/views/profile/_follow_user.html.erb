@@ -1,8 +1,9 @@
+
 <% if @current_musician.id != @musician.id %>
 	<%= hidden_field_tag :follow_musician_id, @musician.id %>
 	<% if !@current_musician.follows_user(@musician) %>
-		<%= link_to "Follow", 'javascript:void(0)', :data => {:follow => "follow"} %>
+		<%= link_to "Follow", 'javascript:void(0)', :data => {:follow => "follow"} , :class =>"follow_bottom follow"%>
 	<% else %>
-		<%= link_to "Unfollow", 'javascript:void(0)', :data => {:follow => "unfollow"} %>
+		<%= link_to "Unfollow", 'javascript:void(0)', :data => {:follow => "unfollow"} , :class =>"follow_bottom unfollow"%>
 	<% end %>
 <% end %>

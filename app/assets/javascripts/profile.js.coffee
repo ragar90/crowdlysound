@@ -11,7 +11,7 @@ jQuery ->
         data: {instruments: data}
         dataType: 'script'
 
-  $("#genres.clickiable_genres").bind("mousedown", (e) ->
+  $("#genres").bind("mousedown", (e) ->
     e.metaKey = true
   ).selectable stop: ->
       data = []
@@ -23,7 +23,7 @@ jQuery ->
         data: {genres: data}
         dataType: 'script'
 
-  $("#follow_user.page_instrument").on "click", "a", ->
+  $("#follow_user").on "click", "a", ->
     follow = $(this).data "follow"
     musician_id = $("#follow_musician_id").val()
     $.ajax

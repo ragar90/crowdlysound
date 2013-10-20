@@ -186,7 +186,9 @@ div.landing_page_master{
 			width:600px !important;
 			min-width:600px !important;
 			padding:20px;
-			background: url(/assets/white_opacity.png) repeat; 
+			//background: url(/assets/white_opacity.png) repeat; 
+			background-image:image-url("white_opacity.jpg");
+			background-repeat: no-repeat;
 			margin:0 auto;
 			@include rounded(5px);
 			@include boxShadow(-2px 2px 12px, #222);

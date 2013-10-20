@@ -25,11 +25,15 @@
 							<div class="clear"></div>
 							Following bands
 						</li>
+						<li>
+							<div id="follow_user">
+								<%= render :partial => "follow_user" %>
+							</div>
+						</li>
 					</ul>
 					</div>
-					<div id="follow_user">
-					<%= render :partial => "follow_user" %>
-					</div>
+					<div class="clear"></div>
+					
 			</div>
 		<div class="clear"></div>
 		</div>
@@ -69,7 +73,9 @@
 							<%= link_to "create a new here", new_song_path%>
 						</span>
 					<% else%>
-					<%= render :partial => "slide_songs" , :object => @musician.songs %>
+					<%#= render :partial => "slide_songs" , :object => @musician.songs %>
+					<%= render :partial => "min_slide_items", :object => @musician.songs,
+						:locals => {:name_partial => "song"} %>
 					<% end %>
 					<%#= render :partial => "song", :collection => @musician.songs %>
 				</div>
