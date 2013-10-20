@@ -12,6 +12,7 @@ class Song < ActiveRecord::Base
   has_one :casting_setting
   has_many :instrument_tags
   has_many :instruments, through: :instrument_tags
+  has_many :rocks, :as => :content
   accepts_nested_attributes_for :instrument_tags
 
   def clean_written_instrument_dependency
@@ -51,6 +52,20 @@ class Song < ActiveRecord::Base
         raise ActiveRecord::Rollback
       end
     end
+  end
+
+  def rocks_by(musician_id, action)
+    rock = Rock.find_by_content_id_and_content_type_and_musician_id(self.id, "Song", musician_id) rescue nil
+
+    if action == 1 && rock.nil?
+      Rock.create!(content_id: self.id, content_type: "Song", musician_id: musician_id)
+    elsif action == 0 && !rock.nil?
+      rock.destroy
+    end
+  end
+
+  def rocks_for?(musician_id)
+    !Rock.where(:content_id => self.id, :content_type => "Song", :musician_id => musician_id).empty?
   end
   
 end

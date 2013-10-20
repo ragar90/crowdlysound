@@ -1,0 +1,1 @@
+$("#rock").html("<%=j render :partial => "rocks/rock_content", :locals => {:item => @item} %>")

@@ -44,6 +44,13 @@ gem 'bcrypt-ruby', '~> 3.0.0', :require => "bcrypt"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'capistrano', '~> 2.15'
+
+group :production do
+  gem 'mysql2' # If using mysql in development, this can be outside the production group.
+  gem 'therubyracer'
+end
+
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
