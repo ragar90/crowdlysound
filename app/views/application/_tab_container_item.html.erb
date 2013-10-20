@@ -1,0 +1,18 @@
+<%
+	title_tab ||=""
+%>
+
+<div class="tab_container">
+	<div class="tab_header">
+		<h1 class="title">
+			<%= title_tab%>
+		</h1>
+	</div>
+	<div class="tab_items">
+		<% tab_container_item.each do |song| %>
+			<div>
+				<%= link_to song.name, song_path(song) %>
+			</div>
+		<% end %>
+	</div>
+</div>
