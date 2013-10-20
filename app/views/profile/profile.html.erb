@@ -54,6 +54,14 @@
 			<%= render :partial => "musician", :collection => @followers %>
 		</div>
 	</div>
+
+	<div>
+		<h2>Following bands</h2>
+
+		<div>
+			<%= render :partial => "band", :collection => @musician.following_bands %>
+		</div>
+	</div>
 </div>
 
 <% if @musician.id == @current_musician.id %>

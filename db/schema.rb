@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131019223753) do
+ActiveRecord::Schema.define(version: 20131019234521) do
 
   create_table "agrupations", force: true do |t|
     t.integer  "member_id"
@@ -64,6 +64,16 @@ ActiveRecord::Schema.define(version: 20131019223753) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "follow_bands", force: true do |t|
+    t.integer  "band_id"
+    t.integer  "musician_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follow_bands", ["band_id"], name: "index_follow_bands_on_band_id", using: :btree
+  add_index "follow_bands", ["musician_id"], name: "index_follow_bands_on_musician_id", using: :btree
 
   create_table "follow_users", force: true do |t|
     t.integer  "user1_id"

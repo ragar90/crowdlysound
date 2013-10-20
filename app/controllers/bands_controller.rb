@@ -77,6 +77,21 @@ class BandsController < ApplicationController
     @band.remove_member(params[:member_id])
   end
 
+  def follow_band
+    action = params[:follow]
+    @band = Band.find(params[:band_id].to_i)
+
+    if action == "follow"
+      if !@current_musician.currently_follows_band(@band)
+        @current_musician.follow_band(@band)
+      end
+    elsif action == "unfollow"
+      if @current_musician.currently_follows_band(@band)
+        @current_musician.unfollow_band(@band)
+      end
+    end
+  end
+
   private
     def set_band
       @band = Band.find(params[:id])

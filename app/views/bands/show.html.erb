@@ -11,6 +11,10 @@
 	  <%= @band.description %>
 	</p>
 
+	<div id="follow_band">
+		<%= render :partial => "follow_band" %>
+	</div>
+
 	<% if @current_musician.leader_of(@band.id) %>
 		<div class="ui-widget" id="new_member_block">
 		  <label for="add_member">New member: </label>

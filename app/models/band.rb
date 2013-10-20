@@ -5,6 +5,10 @@ class Band < ActiveRecord::Base
   has_many :agrupations
   has_many :members, through: :agrupations
 
+  #Associations for follows
+  has_many :follow_bands
+  has_many :followers, :through => :follow_bands
+
   def add_member(musician_email)
   	musician = Musician.find_by_email(musician_email)
 

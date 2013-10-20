@@ -16,6 +16,8 @@ class Musician < ActiveRecord::Base
   has_many :fu_followings, :class_name => 'FollowUser', :foreign_key => 'user1_id'
   has_many :followers, :through => :fu_followers
   has_many :followings, :through => :fu_followings
+  has_many :follow_bands
+  has_many :following_bands, :through => :follow_bands
 
   attr_accessor :password
   
@@ -61,6 +63,18 @@ class Musician < ActiveRecord::Base
 
   def unfollow(tmp_user)
     FollowUser.find_by_user1_id_and_user2_id(self.id, tmp_user.id).destroy!
+  end
+
+  def currently_follows_band(tmp_band)
+    !follow_bands.where(:band_id => tmp_band.id).empty?
+  end
+
+  def follow_band(tmp_band)
+    FollowBand.create!(:musician_id => self.id, :band_id => tmp_band.id)
+  end
+
+  def unfollow_band(tmp_band)
+    FollowBand.find_by_band_id_and_musician_id(tmp_band.id, self.id).destroy!
   end
   
   private

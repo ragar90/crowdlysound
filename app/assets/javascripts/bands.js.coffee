@@ -4,6 +4,15 @@ jQuery ->
   	return
   )
 
+  $("#follow_band").on "click", "a", ->
+    follow = $(this).data "follow"
+    band_id = $("#follow_band_id").val()
+    $.ajax
+      url: "/follow_band"
+      type: "get"
+      data: {follow: follow, band_id: band_id}
+      dataType: 'script'
+
   #$("#band_content").on "click", "input#add_member_btn", ->
   $("#add_member_btn").click ->
   	members = $('#add_member').val()

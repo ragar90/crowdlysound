@@ -14,14 +14,15 @@ CrwoudlySound::Application.routes.draw do
   post 'save_instruments' => 'profile#save_instruments'
   post 'save_genres' => 'profile#save_genres'
 
-  #Follows
-  get 'follow_user' => 'profile#follow_user'
-  get 'user_friends/:id/:kind' => 'profile#user_friends', :as => :user_friends
-
   #Management of bands
   resources :bands
   get "find_musician/:band_id" => "profile#find_musician"
   post "add_members/:id" => "bands#add_members"
   delete "remove_member_from_band/:id/:member_id" => "bands#remove_member", as: :remove_member_from_band 
+
+  #Follows
+  get 'follow_user' => 'profile#follow_user'
+  get 'user_friends/:id/:kind' => 'profile#user_friends', :as => :user_friends
+  get 'follow_band' => 'bands#follow_band'
 
 end
