@@ -1,4 +1,7 @@
 CrwoudlySound::Application.routes.draw do
+  get "castings/index"
+  get "castings/show"
+  get "castings/apply"
   root 'main#index'
   get "landing_page" => "main#landing_page", as: :landing_page
   get "login_as_guest" => "main#login_as_guest", as: :login_as_guest
