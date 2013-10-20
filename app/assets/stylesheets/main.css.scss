@@ -242,7 +242,141 @@ div#main_header{
 }
 //=======================================
 
+div.item_slider{
+	width:90px;
+	padding:10px;
+	border:2px solid #0a404f;
+	min-height:136px;
+	float:left;
+	margin:0 4px;
+	span{
+		display:block;
+		font-size:13px;
+		text-align:center;
+		padding:4px 0;
+		border-top:1px dotted #0a404f;
+	}
+}
+span.not_element{
+	display:block;
+	width:100%;
+	padding:15px;
+	font-size:24px;
+	font-weight:bold;
+	font-style:italic;
+	text-align:center;
+	a:hover{
+		cursor:pointer;
+		text-decoration:underline;
+	}
+}
 
+a.edit_form{
+	padding:10px 16px;
+	background-image:image-url("edit_form.png");
+	background-position:center center;
+	background-repeat: no-repeat;
+}
+a.show_form{
+	padding:10px 16px;
+	background-image:image-url("show_form.png");
+	background-position:center center;
+	background-repeat: no-repeat;
+}
+a.delete_form{
+	padding:10px 16px;
+	background-image:image-url("delete_form.png");
+	background-position:center center;
+	background-repeat: no-repeat;
+}
+
+//simpletable
+h1.simple_title{
+	font-size:34px;
+	display:block;
+	margin-bottom:15px;
+}
+table.simple_table{
+	width:100%;
+	tr{
+		th{
+			font-size:15px;
+			color:#222;
+			border-bottom:1px solid #DDD;
+			padding:10px;
+		}
+		td{
+			padding:10px;
+			border-bottom:1px solid #EEE;
+			font-size:14px;
+			color:#444;
+		}
+		td.left{
+			border-left:1px solid #EEE;
+		}
+		td.right{
+			border-right:1px solid #EEE;
+		}
+		td.center{
+			text-align:center;
+		}
+	}
+}
+
+div.simple_form{
+	width:90%;
+	margin:0 auto;
+	padding:10px;
+	border:1px solid #DDD;
+	div.field{
+		width:100%;
+		padding:5px 0;
+		label{
+			display:inline-block;
+			width:20%;
+			float:left;
+			text-align:right;
+			padding-right:5px;
+			padding-top:4px;
+			font-size:14px;
+			color:#222;
+		}
+		input[type="text"],
+		input[type="password"],
+		input[type="email"]{
+			width:78%;
+			display:inline-block;
+			padding:6px 0
+		}
+		textarea{
+			width:77.5%;
+			min-height:200px;
+		}
+	}
+	div.actions{
+		input[type="submit"]{
+			color:#FFF;
+			background:#38606e;
+			padding:8px 19px;
+			cursor:pointer;
+			font-weight:bold;
+			display:inline-block;
+			border:1px solid #38606e;
+		}
+	}
+}
+a.create_button{
+	font-size:14px;
+	color:#FFF;
+	background:#38606e;
+	padding:8px 19px;
+	cursor:pointer;
+	font-weight:bold;
+	display:inline-block;
+}
+
+
+///////
 @keyframes "music" {
 	0%,100% {
 	-webkit-transform: translate3d(0,-10px,0);

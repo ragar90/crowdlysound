@@ -2,8 +2,8 @@ $slideshow = {
     context: false,
     tabs: false,
     timeout: 7500,      // time before next slide appears (in ms)
-    slideSpeed: 1000,   // time it takes to slide in each slide (in ms)
-    tabSpeed: 300,      // time it takes to slide in each slide (in ms) when clicking through tabs
+    slideSpeed: 3000,   // time it takes to slide in each slide (in ms)
+    tabSpeed: 2000,      // time it takes to slide in each slide (in ms) when clicking through tabs
     fx: 'scrollLeft',   // the slide effect to use
 	indexStarting:0,
     
@@ -32,8 +32,9 @@ $slideshow = {
         // for information on the options set below go to: 
         // http://malsup.com/jquery/cycle/options.html
         $("div.navigator",$slideshow.context).show();
-		var nextArrow = $('a.sliderArrow.sliderNext',$slideshow.context),
-			prevArrow = $('a.sliderArrow.sliderPrev',$slideshow.context),
+
+		var nextArrow = $('a.arrow.arrow_right',$slideshow.context),
+			prevArrow = $('a.arrow.arrow_left',$slideshow.context),
 			ulWidth = $slideshow.tabs.length*15,
 			centerContext = $slideshow.context.width() / 2,
 			op = (centerContext - (ulWidth/2))-25;
@@ -50,14 +51,14 @@ $slideshow = {
             pager: $('ul.slides-nav', $slideshow.context),
             pagerAnchorBuilder: $slideshow.prepareTabs,
             before: $slideshow.activateTab,
-            pauseOnPagerHover: false,
-            //pause: true,
+            pauseOnPagerHover: true,
+            pause: true,
 			next: nextArrow, 
 			prev: prevArrow,
 			startingSlide: $slideshow.indexStarting,
-            //stop: true
-        });
-        //}).cycle('pause');
+            stop: true
+        //});
+        }).cycle('pause');
 		
 		$ulCont = $('ul.slides-nav', $slideshow.context);		
 		$ulCont.css({width:(ulWidth),height:12});

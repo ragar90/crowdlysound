@@ -60,22 +60,40 @@
 			<div>			
 			<h2 class="title">Songs</h2>
 
-				<div>
+			<div class="items_collection">
+					<% if @musician.songs.size == 0%>
+						<span class="not_element">
+							Not have created songs, 
+							<%= link_to "create a new here", new_song_path%>
+						</span>
+					<% else%>
 					<%= render :partial => "slide_songs" , :object => @musician.songs %>
+					<% end %>
 					<%#= render :partial => "song", :collection => @musician.songs %>
 				</div>
 			</div>
 
 			<div>
-				<h2><%= link_to "Your bands", bands_path %></h2>
+				<h2 class="title"><%= link_to "Your bands", bands_path %></h2>
 
 				<div>
-					<%= render :partial => "slide_bands", :object => @musician.bands%>
+					<% if @musician.bands.size == 0%>
+						<span class="not_element">
+							Not have created bands, 
+							<%= link_to "create a new here", new_song_path%>
+						</span>
+					<% else%>
+					<%= render :partial => "min_slide_items", :object => @musician.bands,
+						:locals => {:name_partial => "band"}
+					%>
+					<% end -%>
 					<%#= render :partial => "band", :collection => @musician.bands %>
 				</div>
 			</div>	
 
-			
+			<br />
+			<br />
+			<br />
 		</div>
 		<div class="clear"></div>
 	</div>

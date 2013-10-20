@@ -1,34 +1,41 @@
-<h1>Listing bands</h1>
+<div id="page_container" class="bands">
+<%= render :partial => "header_user_info" , :object =>  @current_musician%>
+<div class="center_page">
+    <h1 class="simple_title">Listing bands</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <table class="simple_table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @bands.each do |band| %>
-      <tr>
-        <td><%= band.name %></td>
-        <td><%= band.description %></td>
-        <td><%= link_to 'Show', band %></td>
-        <% if @current_musician.leader_of(band.id) %>
-          <td><%= link_to 'Edit', edit_band_path(band) %></td>
-          <td><%= link_to 'Remove', band, method: :delete, data: { confirm: 'Are you sure you want to remove this band?' } %></td>
-        <% else %>
-          <td></td>
-          <td></td>
+      <tbody>
+        <% @bands.each do |band| %>
+          <tr>
+            <td class="left"><%= band.name %></td>
+            <td><%= band.description %></td>
+            <td class="center"><%= link_to "", band, :class => "show_form"%></td>
+            <% if @current_musician.leader_of(band.id) %>
+              <td class="center"><%= link_to '', edit_band_path(band) ,:class => "edit_form"%></td>
+              <td class="right center"><%= link_to '', band, method: :delete, data: { confirm: 'Are you sure you want to remove this band?' } , :class => "delete_form" %></td>
+            <% else %>
+              <td></td>
+              <td class="right center"></td>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
 
-<br>
+    <br>
 
-<%= link_to 'New Band', new_band_path %>
+    <%= link_to 'New Band', new_band_path , :class => "create_button"%>
+    <div class="clear"></div>
+    </div>
+<div class="clear"></div>
+</div>

@@ -3,7 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "mixin.css.scss";
 
-div#page_container.profile{
+div#page_container.profile
+,div#page_container.bands{
 	div#header_profile{
 		background-attachment: fixed;
 		width: 100%;
@@ -15,6 +16,9 @@ div#page_container.profile{
 		  -moz-background-size: cover;
 		  -o-background-size: cover;
 		  background-size: cover;
+		   -moz-box-shadow:    inset 2px 0 10px #000000;
+   			-webkit-box-shadow: inset 2px 0 10px #000000;
+   			box-shadow:         inset 2px 0 10px #000000;
 		div.center_page{
 			padding:25px 0;
 			img.user_image{
@@ -64,11 +68,22 @@ div#page_container.profile{
 			font-size:27px;
 			font-weight:bold;
 			display:block;
+			a{
+
+			}
+			a:hover{
+				text-decoration:underline;
+			}
+		}
+		div.items_collection{
+			border-bottom:1px dotted #38606E;
+			margin-bottom:60px;
 		}
 		div.options_element{
 			padding:10px 0;
 			div.clear{
 				background:none !important;
+				border:none !important;
 			}
 			div.ui-selectee{
 				float:left;
