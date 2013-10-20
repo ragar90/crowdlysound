@@ -1,8 +1,26 @@
-<%= form_tag search_path, :id => "search_form", :method => :get do %>
-	<%= text_field_tag :value, params[:value] %>
-	<%= submit_tag "Search" %>
-<% end %>
-
-<div>
-	<%= render :partial => "result", :collection => @results %>
+<div id="search_items">
+	<div id="main_header" data-slide="1" data-stellar-background-ratio="0.5">
+		<div class="center_page">
+			<%=link_to image_tag("new_song_logo.png"), new_song_path, :title =>"Create new Song"%>
+			<%=link_to image_tag("new_band_logo.png"), new_band_path, :title =>"Create New Band"%>
+			<%=link_to image_tag("search_logo.png"), search_path, :title =>""%>
+		</div>
+	</div>
+	<div class="search_container">
+		<div class="center_page">
+			<%= form_tag search_path, :id => "search_form", :method => :get do %>
+				<span>
+					Search people bands and music: 
+				</span>
+				<%= text_field_tag :value, params[:value] %>
+				<%= submit_tag "Search" %>
+			<% end %>
+		</div>
+	</div>
+	<div class="center_page">
+			<div id="result_search">
+				<%= render :partial => "result", :collection => @results %>
+			</div>
+	</div>
 </div>
+

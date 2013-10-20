@@ -3,8 +3,6 @@
 			<%=link_to image_tag("new_song_logo.png"), new_song_path, :title =>"Create new Song"%>
 			<%=link_to image_tag("new_band_logo.png"), new_band_path, :title =>"Create New Band"%>
 			<%=link_to image_tag("search_logo.png"), search_path, :title =>""%>
-
-
 		</div>
 	</div>
 	<div class="clear"></div>
@@ -28,8 +26,7 @@
 			<h1 class="simple_title">
 				Suggested songs
 			</h1>
-			<%= render :partial => "slide_feeds", :object => @current_musician.suggest_newest_songs(10),
-			:locals =>{:name_partial => "items_feeds" } %>
+			<%= render :partial => "slide_feeds", :object => @current_musician.suggest_newest_songs(10), :locals =>{:name_partial => "items_feeds" } %>
 
 			<hr class="green_line"/>
 			<h1 class="simple_title">
@@ -49,6 +46,8 @@
 		</div>
 
 		<div class="right_panel">
+
+			<%= link_to "What is Crowdly Sound?", what_is_crowdly_sound_path %>
 
 			<%= render :partial => "tab_container_item" , :object => @current_musician.songs.limit(10) ,:locals => {:title_tab => "Your Songs", :url_name => "song"}%>
 

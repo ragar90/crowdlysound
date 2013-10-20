@@ -1,9 +1,18 @@
-<div>
-	<%= link_to musician.name, profile_path(musician) %>
-</div>
-
-<div>
+<tr>
+<td>	
+	
+	<%= link_to profile_path(musician) , :class => "user_member" do%>
+		<%= image_tag "user_image.png"%>
+		<span><%=  musician.name %></span>
+		<div class="clear"></div>
+	<% end -%>
+	</td>
+	<td>
+		<%= musician.email%>
+	</td>
+	<td>
 	<% if @current_musician.leader_of(@band.id) && @current_musician.id != musician.id %>
-		<%= link_to "Remove from band", remove_member_from_band_path(@band.id, musician.id), remote: true, method: :delete, data: { confirm: 'Are you sure ypu want to remove this member from the band?' } %>
+		<%= link_to "", remove_member_from_band_path(@band.id, musician.id), remote: true, method: :delete, data: { confirm: 'Are you sure ypu want to remove this member from the band?' } , :class => "delete_form"%>
 	<% end %>
-</div>
+</td>
+</tr>
