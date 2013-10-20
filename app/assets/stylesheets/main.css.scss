@@ -490,6 +490,50 @@ ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
 	height: 200px; overflow-y: scroll; overflow-x: hidden;
 	z-index:2000;
 }
+div#search_items{
+	div.search_container{
+		width: 100%;
+		padding: 15px 0;
+		background: #EEE;
+		border: 1px solid #DDD;
+		span{
+			font-size: 13px;
+		}
+		input[type="text"]{
+			font-size: 13px;
+			padding: 5px 0;
+			width: 400px;
+		}
+		input[type="submit"] {
+			background: #38606e;
+			color: #FFF;
+			font-size: 12px;
+			border: none;
+			margin-left: -6px;
+			padding: 7px 16px 6px 16px;
+		}
+
+	}
+	div#result_search{
+		padding:40px 0;
+		div.item_search{
+			font-size:15px;
+			color:#444;
+			border-bottom:1px solid #EEE;
+			a{
+				padding:6px 0;
+				width:100%;
+				display:block;
+				text-indent:20px;
+				color:#38606e;
+			}
+			a:hover{
+				background:#EFEFEF;
+			}
+		}
+	}
+}
+
 
 @keyframes "music" {
 	0%,100% {
