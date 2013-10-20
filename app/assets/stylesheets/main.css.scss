@@ -548,3 +548,49 @@ div#follow_user{
  }
 
 }
+ul.tags{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  li{
+    font-size:14px;
+    color:#FFF;
+    background:#38606e;
+    padding:8px 10px;
+    font-weight:bold;
+    display:inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  li {
+    position: relative;
+    background: #38606e;
+  }
+  li:after {
+    left: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  li:after {
+    border-color: rgba(56, 96, 110, 0);
+    border-left-color: #38606e;
+    border-width: 9px;
+    top: 50%;
+    margin-top: -9px;
+  }
+}
+div.rock-item{
+  display:inline-block; 
+  font-size:12px; 
+  font-weight:lighter; 
+  margin-left: 9px; 
+  color:#2c539e;
+}
+div.tab-container{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
