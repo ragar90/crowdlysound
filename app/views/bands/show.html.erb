@@ -1,6 +1,5 @@
 <div id="page_container" class="bands">
-	<%= render :partial => "header_user_info" , :object =>  @current_musician%>
-
+	<%= render :partial => "header_band_info" , :object =>  @band%>
 <div id="band_content">
 	<p id="notice"><%= notice %></p>
 	<div class="center_page">
@@ -8,35 +7,49 @@
 			<%= @band.name %>
 		</h1>
 
-		<p>
+		<div id="description_band">
 		  <strong>Description:</strong>
-		  <%= @band.description %>
-		</p>
-
-		<div id="follow_band">
-			<%= render :partial => "follow_band" %>
+		  <p>
+		  	<%= @band.description %>
+		  </p>
 		</div>
-
-		<% if @current_musician.leader_of(@band.id) %>
-			<div class="ui-widget" id="new_member_block">
-			  <label for="add_member">New member: </label>
-			  <input id="add_member" data-band="<%= @band.id %>" />
-			  <input type="button" id="add_member_btn" value="Add" />
-			</div>
-		<% end %>
-
-		<div id="band_members">
-			<%= render :partial => "musician", :collection => @band.members %>
+		<hr class="green_line"/>
+		<div id="xyelement">
+			<table class="simple_table">
+					<tr>
+						<th>Members</th>
+						<th></th>
+						<th></th>
+					</tr>
+				<div id="band_members" class="element">
+					<%= render :partial => "musician", :collection => @band.members %>
+				</div>
+			</table>
+			<% if @current_musician.leader_of(@band.id) %>
+				<div class="ui-widget element" id="new_member_block">
+				  <label for="add_member">Add new member: </label>
+				  <input id="add_member" data-band="<%= @band.id %>" type="text"/>
+				  <input type="button" id="add_member_btn" value="Add" />
+				</div>
+			<% end %>
+		<div class="clear"></div>
 		</div>
-
+		
+		<br/>
+			<hr class="green_line"/>
 		<div id="band_songs">
-			<%= render :partial => "song", :collection => @band.songs %>
+			<h1 class="simple_title">Songs</h1>
+			<%= render :partial => "min_slide_items", :object => @band.songs,
+						:locals => {:name_partial => "song"}%>
+			<%#= render :partial => "song", :collection => @band.songs %>
 		</div>
-
-		<%= link_to "New song", new_band_song_path(@band.id) %>
+		<div class="clear"></div>
+		<br/>
+			<hr class="green_line"/>
+		<%= link_to "New song", new_band_song_path(@band.id) , :class => "create_button"%>
 
 		<% if @band.includes_member?(@current_musician.id) && @current_musician.leader_of(@band.id) %>
-			<%= link_to 'Edit band', edit_band_path(@band) %>
+			<%= link_to 'Edit band', edit_band_path(@band) , :class => "create_button"%>
 		<% end %>
 	</div>
 </div>

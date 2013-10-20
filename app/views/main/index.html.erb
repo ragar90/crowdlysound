@@ -2,19 +2,57 @@
 		<div class="center_page">
 			<%=link_to image_tag("new_song_logo.png"), new_song_path, :title =>"Create new Song"%>
 			<%=link_to image_tag("new_band_logo.png"), new_band_path, :title =>"Create New Band"%>
-			<%=link_to image_tag("search_logo.png"), "javascript:;", :title =>""%>
-
-
+			<%=link_to image_tag("search_logo.png"), search_path, :title =>""%>
 		</div>
 	</div>
 	<div class="clear"></div>
-	<div id="page_container">
+	<!-- <div id="page_container">
 		<div class="center_page">
 		<%= render :partial => "menu_options" %>
 
-		<div id="render_information"></div>
+		<div id="render_information">
+
+
+		</div>
 		<div class="clear"></div>
 		</div>
 	<div class="clear"></div>
+	</div> -->
+
+
+	<div class="panels_user_index">
+		<div class="center_page panels_container">
+		<div class="left_panel">
+			<h1 class="simple_title">
+				Suggested songs
+			</h1>
+			<%= render :partial => "slide_feeds", :object => @current_musician.suggest_newest_songs(10), :locals =>{:name_partial => "items_feeds" } %>
+
+			<hr class="green_line"/>
+			<h1 class="simple_title">
+				Feeds
+			</h1>
+			<ul class="notice">
+				<% @current_musician.feed_loader.each do |item| %>
+					<li>
+						<div class="alert_item">
+							<%= link_to item[:title], item[:path] %> 
+							<br />
+							<%= item[:message] %>
+						</div>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+
+		<div class="right_panel">
+
+			<%= link_to "What is Crowdly Sound?", what_is_crowdly_sound_path %>
+
+			<%= render :partial => "tab_container_item" , :object => @current_musician.songs.limit(10) ,:locals => {:title_tab => "Your Songs", :url_name => "song"}%>
+
+			<%= render :partial => "tab_container_item" , :object => @current_musician.bands.limit(10).limit(10), :locals => {:title_tab => "Your Proyects", :url_name => "band"}%>
+		</div>
+		<div class="clear"></div>
 	</div>
 <div class="clear"></div>

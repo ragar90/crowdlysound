@@ -25,11 +25,15 @@
 							<div class="clear"></div>
 							Following bands
 						</li>
+						<li>
+							<div id="follow_user">
+								<%= render :partial => "follow_user" %>
+							</div>
+						</li>
 					</ul>
 					</div>
-					<div id="follow_user">
-					<%= render :partial => "follow_user" %>
-					</div>
+					<div class="clear"></div>
+					
 			</div>
 		<div class="clear"></div>
 		</div>
@@ -39,15 +43,18 @@
 			<div>
 			<h2 class="title">Genres</h2>
 
-				<div id="genres" class="options_element">
-					<%= render :partial => "genre", :collection => @all_genres %>
+				<% page_genres = @musician.id == @current_musician.id ? "clickiable_genres" : "" %>
+				<% page_instrument = @musician.id == @current_musician.id ? "clickiable_instrument" : "" %>
+				
+				<div id="genres" class="options_element <%=page_genres%>">
+					<%= render :partial => "genre", :collection => @all_genres, :locals => {special_class: page_genres} %>
 					<div class="clear"></div>
 				</div>
 				<%#= @all_genres.inspect %>
 
 			<div class="clear"></div>
 			<h2 class="title">Instruments</h2>
-				<div id="instruments" class="options_element">
+				<div id="instruments" class="options_element <%= page_instrument %>">
 					<%= render :partial => "instrument", :collection => @all_instruments %>
 					<div class="clear"></div>
 				</div>
@@ -67,7 +74,8 @@
 							<%= link_to "create a new here", new_song_path%>
 						</span>
 					<% else%>
-						<%= render :partial => "slide_songs" , :object => @musician.songs %>
+						<%#= render :partial => "slide_songs" , :object => @musician.songs %>
+						<%= render :partial => "min_slide_items", :object => @musician.songs, :locals => {:name_partial => "song"} %>
 					<% end %>
 					<%#= render :partial => "song", :collection => @musician.songs %>
 				</div>
@@ -84,8 +92,7 @@
 						</span>
 					<% else%>
 					<%= render :partial => "min_slide_items", :object => @musician.bands,
-						:locals => {:name_partial => "band"}
-					%>
+						:locals => {:name_partial => "band"}%>
 					<% end -%>
 					<%#= render :partial => "band", :collection => @musician.bands %>
 				</div>

@@ -25,6 +25,7 @@
             <div class="vex-tabdiv" width=700 scale=1.0 editor="false" editor_width=720 editor_height=220><%= music_sheet.notes %></div>
             <div style = "margi-top:5px; margin-bottom:5px;">
               <%= link_to "Edit", edit_song_music_sheet_path(song_id:@song.id, id:music_sheet.id), class: "create_button" %>
+              <%= link_to "Casting requests", castings_song_path(@song.id), class: "create_button" %>
             </div>
         </div>
       <% end %>
@@ -36,9 +37,7 @@
         <%= javascript_include_tag "vextab/vexflow-min" %>
         <%= javascript_include_tag "vextab/underscore-min" %>
         <%= javascript_include_tag "vextab/tabdiv-min" %>
-      <% end %>
-
-      
+      <% end %>      
     </div>
   </div>
 </div>

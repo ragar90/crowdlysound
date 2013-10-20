@@ -4,6 +4,31 @@
 
 @import 'mixin.css.scss';
 
+
+div.slide_feeds_element{
+	width:555px !important;
+	div#items_feeds_slide{
+		width:555px !important;
+	}
+	.slides{
+		overflow: hidden;
+		width: 555px !important;
+		position:relative;
+		
+		ul{
+			width: 10000px;
+			z-index: 5;
+			li{
+				width: 555px !important;
+				//height:425px;
+				float: left;
+				div.item_slider{
+					margin:0 12px;
+				}
+			}
+		}
+	}
+}
 div#homeSlider,
 div#productSlider,
 div#mainGallery_slider,

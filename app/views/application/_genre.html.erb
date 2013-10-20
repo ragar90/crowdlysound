@@ -1,3 +1,4 @@
-<div class="genre <%= @musician_genres.collect{ |i| i.id }.include?(genre.id) ? 'ui-selected' : '' %> " data-genval="<%= genre.id %>">
+<% special_class ||= "" %>
+<div class="genre <%= special_class == '' ? 'ui-selectee' : '' %> <%= @musician_genres.collect{ |i| i.id }.include?(genre.id) ? 'ui-selected' : '' %> " data-genval="<%= genre.id %>">
 	<%= genre.name %>
 </div>
