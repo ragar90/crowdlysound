@@ -156,6 +156,7 @@ div.panels_user_index{
 		width:58%;
 		float:left;
 		ul.notice{
+			padding-bottom:40px;
 			li.news:first-child {
 					border-top: none;
 				}
@@ -204,10 +205,27 @@ div.tab_container{
 		}
 	}
 	div.tab_items{
-		padding:10px;
+		//padding:10px;
 		border:1px solid #AAA;
 		border-top:none;
 		@include rounded(0 0 4px 4px);
+		div.item{
+			a{
+				display:block;
+				padding:10px;
+				font-size:14px;
+				color:#333;
+				border-bottom:1px dotted #EEE;
+			}
+			a:hover{
+				background:#EFEFEF;
+				color:#38606e;
+				text-decoration:underline;
+			}
+			a:last-child{
+				border:none;
+			}
+		}
 	}
 }
 //=======================================

@@ -39,7 +39,9 @@
 			<div>
 			<h2 class="title">Genres</h2>
 
-				<div id="genres" class="options_element">
+		<% page_genres = @musician.id == @current_musician.id ? "clickiable_genres" : "" %>
+		<% page_instrument = @musician.id == @current_musician.id ? "clickiable_instrument" : "" %>
+				<div id="genres" class="options_element <%=page_genres%>">
 					<%= render :partial => "genre", :collection => @all_genres %>
 					<div class="clear"></div>
 				</div>
@@ -47,7 +49,7 @@
 
 			<div class="clear"></div>
 			<h2 class="title">Instruments</h2>
-				<div id="instruments" class="options_element">
+				<div id="instruments" class="options_element <%= page_instrument %>">
 					<%= render :partial => "instrument", :collection => @all_instruments %>
 					<div class="clear"></div>
 				</div>

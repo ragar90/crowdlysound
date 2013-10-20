@@ -1,0 +1,23 @@
+<div id="header_profile" data-slide="1" data-stellar-background-ratio="0.5">
+    <div class="center_page">
+      <%= image_tag "logo_only.png", :class => "user_image" %>
+
+      <div class="info_user">
+        <h1 class="title"><%= header_band_info.name %></h1>
+          <div>
+          <ul id="social_activity">
+            <li>  
+              <%#= render :partial => "musician", :collection => @followers %>
+              <h1><%= header_band_info.followers.length %></h1>
+              <div class="clear"></div>
+              Followers
+            </li>
+          </ul>
+          </div>
+          <div id="follow_band">
+          <%= render :partial => "follow_band" %>
+          </div>
+      </div>
+    <div class="clear"></div>
+    </div>
+  </div>

@@ -49,9 +49,10 @@
 		</div>
 
 		<div class="right_panel">
-			<%= render :partial => "tab_container_item" , :object => @current_musician.songs.limit(10),
-			:locals => {:title_tab => "Your Songs"}%>
-			<%= render :partial => "tab_container_item" , :object => @current_musician.bands.limit(10).limit(10), :locals => {:title_tab => "Your Proyects"}%>
+
+			<%= render :partial => "tab_container_item" , :object => @current_musician.songs.limit(10) ,:locals => {:title_tab => "Your Songs", :url_name => "song"}%>
+
+			<%= render :partial => "tab_container_item" , :object => @current_musician.bands.limit(10).limit(10), :locals => {:title_tab => "Your Proyects", :url_name => "band"}%>
 		</div>
 		<div class="clear"></div>
 	</div>
