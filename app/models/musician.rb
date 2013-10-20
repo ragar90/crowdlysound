@@ -53,7 +53,6 @@ class Musician < ActiveRecord::Base
   end
 
   ######################## FOLLOWS
-
   def follows_user(tmp_user)
     !followings.where(:id => tmp_user.id).empty?
   end
@@ -76,6 +75,22 @@ class Musician < ActiveRecord::Base
 
   def unfollow_band(tmp_band)
     FollowBand.find_by_band_id_and_musician_id(tmp_band.id, self.id).destroy!
+  end
+
+  ######################## PERMISSIONS
+  def can_edit_music_sheet?(music_sheet)
+    cowriter = self.cowriters.where(coauthored_song_id: song.id).first
+    return can_edit_song?(music_sheet.song) and cowriter.instrument_id == music_sheet.instrument_id
+  end
+
+  def can_edit_song?(song)
+    if song.owner_id == self.id and song.owner_type == self.class.to_s
+      true
+    elsif self.coauthored_song_ids.include?(song.id)
+      true
+    else
+      false
+    end
   end
 
   #MAIN QUERIES

@@ -1,10 +1,10 @@
-<% index_page = (controller.controller_name == "main" and controller.action_name == "index") ? "index_page" : ""%>
+<% index_page = (controller.controller_name == "main" and controller.action_name == "index") ? "" : ""%>
 
 
 <div id="header" class="<%= index_page%>">
 	<div class="center_page">
 		<%= link_to "Crwoudly Sound", root_path, :id => "page_logo" %>
-		<ul id="menu_items">
+<!-- 		<ul id="menu_items">
 			<li>
 				<%= link_to "Menu Options", "javascript:;"%>
 			</li>
@@ -14,14 +14,24 @@
 			<li>
 				<%= link_to "Menu Options", "javascript:;"%>
 			</li>
-		</ul>
-		<div class="form_search">
+		</ul> -->
+		<!-- <div class="form_search">
 			<form>
 			<input type="text">
 			<button type="submit" name="btn" value="val">
 				<%= image_tag "find.png"%>
 			</button>
 			</form>
+		</div> -->
+		<div class="user_info">
+			<%= link_to "javascript:;" , :class => "user_info_header"  do%>
+				<%= image_tag "user_image.png" %>
+				<div class="info_complementary">
+					<span class="name_user">Username</span>
+					<span class="type_user">Musician</span>
+				</div>
+				<div class="clear"></div>
+			<% end -%>
 		</div>
 	<div class="clear"></div>
 	</div>
