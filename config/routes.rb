@@ -1,6 +1,7 @@
 CrwoudlySound::Application.routes.draw do
   root 'main#index'
 
+  get "what_is_crowdly_sound" => "main#what_is_crowdly_sound", as: :what_is_crowdly_sound
   get "landing_page" => "main#landing_page", as: :landing_page
   get "login_as_guest" => "main#login_as_guest", as: :login_as_guest
   get "index2" => "main#index2", as: :index2

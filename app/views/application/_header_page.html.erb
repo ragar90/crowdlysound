@@ -23,17 +23,20 @@
 			</button>
 			</form>
 		</div> -->
-		<div class="user_info">
-			<%= link_to profile_path, :class => "user_info_header"  ,:data => "no-turbolinkdo" do%>
-				<%= image_tag "user_image.png" %>
-				<div class="info_complementary">
-					<span class="name_user"><%= @current_musician.name %></span>
-					<span class="type_user">Musician</span>
-				</div>
-				<div class="clear"></div>
-			<% end -%>
-		</div>
-	<div class="clear"></div>
+		<% if controller.action_name != "what_is_crowdly_sound" %>
+			<div class="user_info">
+				<%= link_to profile_path, :class => "user_info_header"  ,:data => "no-turbolinkdo" do%>
+					<%= image_tag "user_image.png" %>
+					<div class="info_complementary">
+						<span class="name_user"><%= @current_musician.name %></span>
+						<span class="type_user">Musician</span>
+					</div>
+					<div class="clear"></div>
+				<% end -%>
+			</div>
+		<% end %>
+		
+		<div class="clear"></div>
 	</div>
 
 	

@@ -1,6 +1,6 @@
 class MainController < ApplicationController
 
-  before_filter :check_musician, except: [:landing_page, :login_as_guest]
+  before_filter :check_musician, except: [:landing_page, :login_as_guest, :what_is_crowdly_sound]
   
   def landing_page
   end
@@ -70,6 +70,9 @@ class MainController < ApplicationController
   end
 
   def index2
+  end
+
+  def what_is_crowdly_sound
   end
 
 end
