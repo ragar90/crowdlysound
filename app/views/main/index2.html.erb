@@ -47,13 +47,13 @@
 		<div class="center_page panels_container">
 		<div class="left_panel">
 			<ul class="notice">
-				  <% for item in 1..25 %>
-				    <li>
-				    	<div class="alert_item">
-				    		<%= link_to "Name person", "javascript"%> notice text
-				    	</div>
+				<% @current_musician.feed_loader.each do |item| %>
+					<li>
+						<div class="alert_item">
+							<%= link_to item[:title], item[:path] %> <%= item[:message] %>
+						</div>
 					</li>
-				  <% end %>
+				<% end %>
 			</ul>
 		</div>
 		<div class="right_panel">

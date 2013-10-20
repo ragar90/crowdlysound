@@ -79,6 +79,16 @@ class Musician < ActiveRecord::Base
   end
 
   #MAIN QUERIES
+  def feed_loader(total = 12)
+    elements = []
+    cowriting_songs_activities(total).map{ |item| elements << build_feed_message(item, 1) }
+    suggest_followings_songs(total).map{ |item| elements << build_feed_message(item, 2) }
+    suggest_following_bands_songs(total).map{ |item| elements << build_feed_message(item, 3) }
+    suggest_newest_songs(total).map{ |item| elements << build_feed_message(item, 4) }
+
+    elements.sort_by { |obj| obj[:updated] }
+  end
+
   def cowriting_songs_activities(total = 12)
     participating_in_songs = music_sheets.collect{ |ms| ms.song_id }
     MusicSheet.where("song_id IN (?)", participating_in_songs).order("updated_at DESC").limit(total)
@@ -97,7 +107,7 @@ class Musician < ActiveRecord::Base
   def suggest_newest_songs(total = 12)
     genres_ids = genres.collect{ |g| g.id }
     instruments_ids = instruments.collect{ |i| i.id }
-    Song.where("genre_tags.genre_id IN (?) OR instrument_tags.instrument_id IN (?)", genres_ids, instruments_ids).joins(:genre_tags, :instrument_tags).order("id DESC").limit(total)
+    Song.where("genre_tags.genre_id IN (?) OR instrument_tags.instrument_id IN (?)", genres_ids, instruments_ids).joins(:genre_tags, :instrument_tags).order("updated_at DESC").limit(total).group("songs.id")
   end
   
   private
@@ -105,6 +115,22 @@ class Musician < ActiveRecord::Base
       if password.present?
         self.salt = BCrypt::Engine.generate_salt
         self.password_digest = BCrypt::Engine.hash_secret(password, salt)
+      end
+    end
+
+    def build_feed_message(item, kind)
+      case kind
+      when 1
+        additional_message = !item.musician_id.nil? ? " by #{item.musician.name}" : ""
+        return {title: "New updates in '#{item.song.name}' where you are collaborating", path: "/song/#{item.song_id}", message: "The music sheet for #{item.instrument.name} has been updated #{additional_message}", updated: item.updated_at}
+      when 2
+        additional_message = !item.musician_id.nil? ? " by #{item.musician.name}" : ""
+        return {title: "New updates in #{item.song.name} of #{item.song.owner.name}", path: "/song/#{item.song_id}", message: "The music sheet for #{item.instrument.name} has been updated #{additional_message}", updated: item.updated_at}
+      when 3
+        additional_message = !item.musician_id.nil? ? " by #{item.musician.name}" : ""
+        return {title: "New updates in #{item.song.name} of #{item.song.owner.name}", path: "/song/#{item.song_id}", message: "The music sheet for #{item.instrument.name} has been updated #{additional_message}", updated: item.updated_at}
+      when 4
+        return {title: "A new song is born", path: "/songs/#{item.id}", message: "Check for #{item.name} of #{item.owner.name} and give your appreciations!", updated: item.updated_at}
       end
     end
 
