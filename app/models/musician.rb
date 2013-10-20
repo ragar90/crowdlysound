@@ -10,6 +10,7 @@ class Musician < ActiveRecord::Base
   has_many :bands, through: :agrupations
   has_many :castings
   has_many :casting_songs, through: :castings
+  has_many :music_sheets
   
   #Associations for follows
   has_many :fu_followers, :class_name => 'FollowUser', :foreign_key => 'user2_id'
@@ -75,6 +76,28 @@ class Musician < ActiveRecord::Base
 
   def unfollow_band(tmp_band)
     FollowBand.find_by_band_id_and_musician_id(tmp_band.id, self.id).destroy!
+  end
+
+  #MAIN QUERIES
+  def cowriting_songs_activities(total = 12)
+    participating_in_songs = music_sheets.collect{ |ms| ms.song_id }
+    MusicSheet.where("song_id IN (?)", participating_in_songs).order("updated_at DESC").limit(total)
+  end
+
+  def suggest_followings_songs(total = 12)
+    followings_ids = followings.collect{ |m| m.id }
+    MusicSheet.joins(:song).where("songs.owner_type='Musician' AND songs.owner_id IN (?)", followings_ids).order("updated_at DESC").limit(total)
+  end
+
+  def suggest_following_bands_songs(total = 12)
+    followings_ids = following_bands.collect{ |m| m.id }
+    MusicSheet.joins(:song).where("songs.owner_type='Band' AND songs.owner_id IN (?)", followings_ids).order("updated_at DESC").limit(total)
+  end
+
+  def suggest_newest_songs(total = 12)
+    genres_ids = genres.collect{ |g| g.id }
+    instruments_ids = instruments.collect{ |i| i.id }
+    Song.where("genre_tags.genre_id IN (?) OR instrument_tags.instrument_id IN (?)", genres_ids, instruments_ids).joins(:genre_tags, :instrument_tags).order("id DESC").limit(total)
   end
   
   private
