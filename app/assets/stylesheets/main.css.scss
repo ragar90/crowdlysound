@@ -217,6 +217,10 @@ div#main_header{
 	//height: auto;
 	position: relative;
 	background:transparent url(/assets/background_image.jpg) no-repeat;
+	-webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  -o-background-size: cover;
+		  background-size: cover;
 	//min-height:200px;
 	div.center_page{
 		text-align:center;

@@ -165,12 +165,14 @@ div.landing_page_master{
 		z-index:5;
 		top:0;
 		left:0;
-		background: url(/assets/background_image.jpg) no-repeat center center; 
 
-		  -webkit-background-size: cover;
-		  -moz-background-size: cover;
-		  -o-background-size: cover;
-		  background-size: cover;
+		background-image:image-url("/assets/background_image.jpg");
+		background-repeat:none;
+		background-position:center center;
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
 	}
 	div.landing_container{
 		position:relative;

@@ -61,7 +61,8 @@
 			<h2 class="title">Songs</h2>
 
 				<div>
-					<%= render :partial => "song", :collection => @musician.songs %>
+					<%= render :partial => "slide_songs" , :object => @musician.songs %>
+					<%#= render :partial => "song", :collection => @musician.songs %>
 				</div>
 			</div>
 
@@ -69,7 +70,8 @@
 				<h2><%= link_to "Your bands", bands_path %></h2>
 
 				<div>
-					<%= render :partial => "band", :collection => @musician.bands %>
+					<%= render :partial => "slide_bands", :object => @musician.bands%>
+					<%#= render :partial => "band", :collection => @musician.bands %>
 				</div>
 			</div>	
 

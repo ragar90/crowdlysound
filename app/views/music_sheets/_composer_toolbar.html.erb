@@ -1,0 +1,16 @@
+<div class = "composer-input note-input"> 
+  Fret: <%= number_field_tag "fret-input", "", class: "composert-number-input", id: "fret-input" %>
+  Rest: <%= number_field_tag "rest-input", "", class: "composert-number-input", id: "rest-input" %>
+  Mute note:<%= radio_button_tag "mute-input","X", false, id: "mute-input", id: "mute-input" %>
+  String: <%= number_field_tag "string-input", "", class: "composert-number-input", id: "string-input" %>
+  Duration: <%= select_tag "duration-select",  options_for_select(DURATIONS), id: "duration-select" %>
+  <%= link_to "Insert Note", "", class: "composer-btn", id: "note-btn" %>
+</div>
+<div class = "composer-input chords-input">
+  Chords: <%= select_tag "chords-select", options_for_select(CHORDS), id: "chords-select" %>
+  <%= link_to "Insert Chord", "", class: "composer-btn", id: "chord-btn" %>
+</div>
+<div class = "composer-input bar-input">
+  Insert Bar: <%= select_tag "bar-input", options_for_select(BARS), id: "bar-input" %>
+  <%= link_to "Insert Bar", "", class: "composer-btn", id: "bar-btn" %>
+</div>
