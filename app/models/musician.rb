@@ -37,7 +37,6 @@ class Musician < ActiveRecord::Base
     end
   end
 
-<<<<<<< HEAD
   def self.find_musician(term, band_id = 0)
     if band_id == 0
       where("name LIKE '%#{term}%' OR email LIKE '%#{term}%'")
@@ -79,8 +78,8 @@ class Musician < ActiveRecord::Base
   end
 
   def can_edit_music_sheet?(music_sheet)
-    cowriter = self.cowriters.where(coauthored_song_id: song.id).first
-    return can_edit_song?(music_sheet.song) and cowriter.instrument_id == music_sheet.instrument_id
+    cowriter = self.cowriters.where(coauthored_song_id: music_sheet.song.id).first
+    return (can_edit_song?(music_sheet.song) and cowriter.instrument_id == music_sheet.instrument_id)
   end
 
   def can_edit_song?(song)

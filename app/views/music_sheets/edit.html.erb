@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @music_sheet %> |
+<%= link_to 'Show', song_music_sheet_path(song_id: @song.id, id: @music_sheet.id) %> |
 <%= link_to 'Back', song_music_sheets_path %>

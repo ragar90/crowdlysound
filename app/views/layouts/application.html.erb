@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>CrwoudlySound</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application"%>
   <link href='http://fonts.googleapis.com/css?family=Alex+Brush|Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
   
   <%= csrf_meta_tags %>
@@ -15,6 +15,6 @@
 	<%#= render :partial => "menu_header" %>
 	<%= yield %>
 </div>
-
+<%= yield(:vextab) %>
 </body>
 </html>
