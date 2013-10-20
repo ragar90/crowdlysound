@@ -11,26 +11,33 @@ class MainController < ApplicationController
 	  	guest = Musician.new(email: "guest#{total_musician}@example.com", name: "Guest #{total_musician}", password: "welcome", is_guest: true)
 	  	guest.save
 
-		InstrumentSkill.create!(instrument_id: 1, musician_id: guest.id)
-		InstrumentSkill.create!(instrument_id: 3, musician_id: guest.id)
+  		InstrumentSkill.create!(instrument_id: 1, musician_id: guest.id)
+  		InstrumentSkill.create!(instrument_id: 3, musician_id: guest.id)
 
-		MusicTaste.create!(genre_id: 1, musician_id: guest.id)
-		MusicTaste.create!(genre_id: 5, musician_id: guest.id)
-		MusicTaste.create!(genre_id: 9, musician_id: guest.id)
+  		MusicTaste.create!(genre_id: 1, musician_id: guest.id)
+  		MusicTaste.create!(genre_id: 5, musician_id: guest.id)
+  		MusicTaste.create!(genre_id: 9, musician_id: guest.id)
 
-		total_band = Band.count
-		band = Band.new(name: "Band #{total_band}")
-		band.save
+  		total_band = Band.count
+  		band = Band.new(name: "Band #{total_band}")
+  		band.save
 
-		Agrupation.create!(member_id: guest.id, band_id: band.id, is_leader: true)
-		Agrupation.create!(member_id: 3, band_id: band.id, is_leader: false)
-		Agrupation.create!(member_id: 15, band_id: band.id, is_leader: false)
-		Agrupation.create!(member_id: 24, band_id: band.id, is_leader: false)
+  		Agrupation.create!(member_id: guest.id, band_id: band.id, is_leader: true)
+  		Agrupation.create!(member_id: 3, band_id: band.id, is_leader: false)
+  		Agrupation.create!(member_id: 15, band_id: band.id, is_leader: false)
+  		Agrupation.create!(member_id: 24, band_id: band.id, is_leader: false)
 
-	  	session[:musician_id] = guest.id
-	end
-	
+  	  	session[:musician_id] = guest.id
+  	end
   	redirect_to root_path
+  end
+
+  def genres_token_input
+    @genres = Genre.where("name like ?", "%#{params[:q]}%").map{|genre| {id: genre.id, name: genre.name}}
+    respond_to do |format|
+      format.html{}
+      format.json{ render json: @genres}
+    end
   end
 
   def index

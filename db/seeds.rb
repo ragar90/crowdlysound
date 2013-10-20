@@ -8,7 +8,7 @@ end
 if Instrument.count == 0
 	Instrument.create!(name: "Guitar")
 	Instrument.create!(name: "Drums")
-	Instrument.create!(name: "Bass Guitar")
+	Instrument.create!(name: "Bass")
 	Instrument.create!(name: "Keyboard")
 end
 

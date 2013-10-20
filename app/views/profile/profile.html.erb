@@ -67,7 +67,7 @@
 							<%= link_to "create a new here", new_song_path%>
 						</span>
 					<% else%>
-					<%= render :partial => "slide_songs" , :object => @musician.songs %>
+						<%= render :partial => "slide_songs" , :object => @musician.songs %>
 					<% end %>
 					<%#= render :partial => "song", :collection => @musician.songs %>
 				</div>

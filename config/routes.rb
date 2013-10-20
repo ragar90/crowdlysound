@@ -7,6 +7,7 @@ CrwoudlySound::Application.routes.draw do
   get "landing_page" => "main#landing_page", as: :landing_page
   get "login_as_guest" => "main#login_as_guest", as: :login_as_guest
   get "index2" => "main#index2", as: :index2
+  get "genres" => "main#genres_token_input", as: :genres_token_input
 
   #Profile
   get "profile(/:musician_id)" => "profile#profile", as: :profile

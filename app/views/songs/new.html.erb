@@ -1,5 +1,10 @@
-<h1>New song</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show all songs', songs_path %>
+<div id="page_container" class="bands">
+  <%= render :partial => "header_user_info" , :object =>  @current_musician%>
+  <div id="song_container">
+    <div class = "center_page">
+      <h1 class="simple_title" >New Song</h1>
+      <%= render 'form' %>
+      <%= link_to 'Show all songs', songs_path %>
+    </div>
+  </div>
+</div>
