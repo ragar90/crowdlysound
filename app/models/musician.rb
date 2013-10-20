@@ -1,6 +1,7 @@
 class Musician < ActiveRecord::Base
+  
   has_many :songs, as: :owner
-  has_many :cowriters
+  has_many :cowriters, :foreign_key => "coauthor_id"
   has_many :coauthored_songs, through: :cowriters
   has_many :music_tastes
   has_many :genres, through: :music_tastes
@@ -36,6 +37,10 @@ class Musician < ActiveRecord::Base
     else
       #Error Messages
     end
+  end
+
+  def belongs_to_band?(band_id)
+    !bands.where(:id => band_id).empty?
   end
 
   def is_guest_user
@@ -84,7 +89,8 @@ class Musician < ActiveRecord::Base
   ######################## PERMISSIONS
   def can_edit_music_sheet?(music_sheet)
     cowriter = self.cowriters.where(coauthored_song_id: song.id).first
-    return can_edit_song?(music_sheet.song) && cowriter.instrument_id == music_sheet.instrument_id
+    #return can_edit_song?(music_sheet.song) && cowriter.instrument_id == music_sheet.instrument_id
+    return can_edit_song?(music_sheet.song)
   end
 
   def can_edit_song?(song)
@@ -105,7 +111,7 @@ class Musician < ActiveRecord::Base
     suggest_following_bands_songs(total).map{ |item| elements << build_feed_message(item, 3) }
     suggest_newest_songs(total).map{ |item| elements << build_feed_message(item, 4) }
 
-    elements.sort_by { |obj| obj[:updated] }
+    elements.sort! { |a, b|  b[:updated] <=> a[:updated] }
   end
 
   def cowriting_songs_activities(total = 12)
