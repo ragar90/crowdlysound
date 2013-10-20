@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_action :set_song, only: [:show, :edit, :update, :destroy, :castings, :cover]
+  before_action :set_song, except: [:new, :index ]
   #skip_before_filter :check_musician
   # GET /songs
   # GET /songs.json
@@ -10,6 +10,8 @@ class SongsController < ApplicationController
   # GET /songs/1
   # GET /songs/1.json
   def show
+    @comments = @song.comments
+    @coomentable = @song
   end
 
   # GET /songs/new
@@ -98,11 +100,10 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       if @casting.save
-        format.html { redirect_to @casting, notice: 'Your Casting was send successfully' }
+        format.html { redirect_to root_path, notice: 'Your Casting was send successfully' }
         format.json { render action: 'show', status: :created, location: @casting }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @casting.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: 'Somthing went wrong with your application' }
       end
     end
   end
@@ -111,12 +112,29 @@ class SongsController < ApplicationController
     @casting = @song.castings.where(id: params[:casting_id]).first
     @casting.status = params[:status].to_i
     @casting.save
+    if @casting.status == 1
+      @song.cowriters << Cowriter.new(instrument_id: params[:instrument_id], coauthor_id: @casting.caster_id)
+    end
     redirect_to root_path
   end
 
   def cover
     @song.cover_for(current_musician)
     redirect_to root_path
+  end
+
+  def remove_cowriter
+    @song.cowriters.where(coauthor_id: params[:coauthor_id], instrument_id: params[:instrument_id]).first.destroy
+    redirect_to root_path
+  end
+
+  def rock
+    @song.rock_likes_count+=1
+    @song.save
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "This Song rocks you \\m/" }
+      format.json { render json: {message: "This Song rocks you \\m/"}, status: :created, location: @song }
+    end
   end
 
   private

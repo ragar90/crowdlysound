@@ -9,11 +9,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <div id="main_container">
 	<%= render :partial => "header_page" if controller.action_name != "landing_page"%>
+	<%#= render :partial => "menu_header" %>
 	<%= yield %>
 	<div class="clear"></div>
 	<%= render :partial => "footer_page" if controller.action_name != "landing_page"%>
 </div>
+
 </body>
 </html>

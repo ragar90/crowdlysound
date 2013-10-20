@@ -1,0 +1,6 @@
+<%= hidden_field_tag :follow_band_id, @band.id %>
+<% if !@current_musician.currently_follows_band(@band) %>
+	<%= link_to "Follow", 'javascript:void(0)', :data => {:follow => "follow"} %>
+<% else %>
+	<%= link_to "Unfollow", 'javascript:void(0)', :data => {:follow => "unfollow"} %>
+<% end %>

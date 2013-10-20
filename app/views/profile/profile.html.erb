@@ -1,0 +1,71 @@
+<div>
+	<h1><%= @musician.name %></h1>
+
+	<div id="follow_user">
+		<%= render :partial => "follow_user" %>
+	</div>
+
+	<div>
+		<h2>Genres</h2>
+
+		<div id="genres">
+			<%= render :partial => "genre", :collection => @all_genres %>
+		</div>
+		<%= @musician_genres.inspect %>
+	</div>	
+
+	<div>
+		<h2>Instruments</h2>
+
+		<div id="instruments">
+			<%= render :partial => "instrument", :collection => @all_instruments %>
+		</div>
+	</div>
+	<%= @musician_instruments.inspect %>
+	
+	<div>
+		<h2>Songs</h2>
+
+		<div>
+			<%= render :partial => "song", :collection => @musician.songs %>
+		</div>
+	</div>
+
+	<div>
+		<h2><%= link_to "Your bands", bands_path %></h2>
+
+		<div>
+			<%= render :partial => "band", :collection => @musician.bands %>
+		</div>
+	</div>	
+
+	<div>
+		<h2>Following</h2>
+
+		<div>
+			<%= render :partial => "musician", :collection => @followings %>
+		</div>
+	</div>
+
+	<div>
+		<h2>Followers</h2>
+
+		<div>
+			<%= render :partial => "musician", :collection => @followers %>
+		</div>
+	</div>
+
+	<div>
+		<h2>Following bands</h2>
+
+		<div>
+			<%= render :partial => "band", :collection => @musician.following_bands %>
+		</div>
+	</div>
+</div>
+
+<% if @musician.id == @current_musician.id %>
+	<div>
+		<%= link_to "Edit", edit_profile_path %>
+	</div>
+<% end %>

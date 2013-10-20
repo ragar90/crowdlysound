@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131019071827) do
+ActiveRecord::Schema.define(version: 20131020011639) do
 
   create_table "agrupations", force: true do |t|
-    t.integer  "musician_id"
+    t.integer  "member_id"
     t.integer  "band_id"
+    t.boolean  "is_leader"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "bands", force: true do |t|
     t.string   "name"
-    t.integer  "leader_id"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,14 +54,33 @@ ActiveRecord::Schema.define(version: 20131019071827) do
   end
 
   create_table "cowriters", force: true do |t|
-    t.integer  "musician_id"
-    t.integer  "song_id"
+    t.integer  "coauthor_id"
+    t.integer  "coauthored_song_id"
+    t.integer  "casting_id"
+    t.integer  "instrument_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "filter_types", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "follow_bands", force: true do |t|
+    t.integer  "band_id"
+    t.integer  "musician_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follow_bands", ["band_id"], name: "index_follow_bands_on_band_id", using: :btree
+  add_index "follow_bands", ["musician_id"], name: "index_follow_bands_on_musician_id", using: :btree
+
+  create_table "follow_users", force: true do |t|
+    t.integer  "user1_id"
+    t.integer  "user2_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,7 +108,6 @@ ActiveRecord::Schema.define(version: 20131019071827) do
   create_table "instrument_tags", force: true do |t|
     t.integer  "instrument_id"
     t.integer  "song_id"
-    t.boolean  "writen_by_me"
     t.boolean  "written_by_me"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -122,6 +141,8 @@ ActiveRecord::Schema.define(version: 20131019071827) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "salt"
+    t.boolean  "is_guest",        default: false
   end
 
   create_table "songs", force: true do |t|
@@ -130,6 +151,7 @@ ActiveRecord::Schema.define(version: 20131019071827) do
     t.string   "owner_type"
     t.integer  "cover_of_id"
     t.integer  "rock_likes_count"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
