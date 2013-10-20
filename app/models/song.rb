@@ -54,18 +54,18 @@ class Song < ActiveRecord::Base
     end
   end
 
-  def rocks_by(musician_id, action)
-    rock = Rock.find_by_content_id_and_content_type_and_musician_id(self.id, "Song", musician_id) rescue nil
+  def rocks_by(tmp_musician_id, action)
+    rock = Rock.find_by_content_id_and_content_type_and_musician_id(self.id, "Song", tmp_musician_id) rescue nil
 
     if action == 1 && rock.nil?
-      Rock.create!(content_id: self.id, content_type: "Song", musician_id: musician_id)
+      Rock.create!(musician_id: tmp_musician_id, content_id: self.id, content_type: "Song")
     elsif action == 0 && !rock.nil?
       rock.destroy
     end
   end
 
-  def rocks_for?(musician_id)
-    !Rock.where(:content_id => self.id, :content_type => "Song", :musician_id => musician_id).empty?
+  def rocks_for?(tmp_musician_id)
+    !Rock.where(:content_id => self.id, :content_type => "Song", :musician_id => tmp_musician_id).empty?
   end
   
 end

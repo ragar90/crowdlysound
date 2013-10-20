@@ -46,6 +46,6 @@ CrwoudlySound::Application.routes.draw do
     end
   end
   post "comment" => "comments#create"
-  get "rock/:content_id/:content_type/:action" => "rocks#update", :as => "rock"
+  get "rock/:content_id/:content_type/:action_value" => "rocks#update", :as => "rock"
 
 end
