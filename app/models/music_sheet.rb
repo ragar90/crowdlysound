@@ -3,6 +3,7 @@ class MusicSheet < ActiveRecord::Base
   belongs_to :instrument
   belongs_to :musician
   has_many :comments, as: :comentable
+  has_many :rocks, :as => :content
   before_create :set_default_notes
 
   def set_default_notes
@@ -21,4 +22,19 @@ class MusicSheet < ActiveRecord::Base
     end
     self.notes = "tabstave notation=true #{clef}\n notes" 
   end
+
+  def rocks_by(musician_id, action)
+    rock = Rock.find_by_content_id_and_content_type_and_musician_id(self.id, "MusicSheet", musician_id) rescue nil
+
+    if action == 1 && rock.nil?
+      Rock.create!(content_id: self.id, content_type: "MusicSheet", musician_id: musician_id)
+    elsif action == 0 && !rock.nil?
+      rock.destroy
+    end
+  end
+
+  def rocks_for?(musician_id)
+    !Rock.where(:content_id => self.id, :content_type => "MusicSheet", :musician_id => musician_id).empty?
+  end
+  
 end

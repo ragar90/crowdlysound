@@ -12,6 +12,7 @@ class Musician < ActiveRecord::Base
   has_many :castings
   has_many :casting_songs, through: :castings
   has_many :music_sheets
+  has_many :rocks
   
   #Associations for follows
   has_many :fu_followers, :class_name => 'FollowUser', :foreign_key => 'user2_id'

@@ -29,3 +29,7 @@
   <%= javascript_include_tag "vextab/underscore-min" %>
   <%= javascript_include_tag "vextab/tabdiv-min" %>
 <% end %>
+
+<div>
+  <%= render :partial => "rocks/rock", :locals => {item: @song} %>
+</div>
