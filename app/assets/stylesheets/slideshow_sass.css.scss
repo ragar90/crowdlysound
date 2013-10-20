@@ -7,12 +7,23 @@
 div#homeSlider,
 div#productSlider,
 div#mainGallery_slider,
-div.master_slider{
+div.master_slider,
+div.slide_bands_container{
 	width:980px;
 	background-color:transparent;
 	border:0;
 	padding: 10px 0;
 	position:relative;
+		a.arrow{
+			position:absolute;
+			top:20%;
+		}
+		a.arrow.arrow_left{
+			left:-20px;
+		}
+		a.arrow.arrow_right{
+			right:-20px;
+		}
 	ul{
 		margin: 0;
 		padding: 0;
@@ -31,6 +42,7 @@ div.master_slider{
 		overflow: hidden;
 		width: 980px;
 		position:relative;
+		
 		ul{
 			width: 10000px;
 			z-index: 5;
