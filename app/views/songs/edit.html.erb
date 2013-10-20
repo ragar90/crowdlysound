@@ -1,6 +1,11 @@
-<h1>Editing song</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @song %> |
-<%= link_to 'Back', songs_path %>
+<div id="page_container" class="bands">
+  <%= render :partial => "header_user_info" , :object =>  @current_musician%>
+  <div id = "song_container" >
+    <div class = "center_page">
+      <h1 class="simple_title" >Editing Song</h1>
+      <%= render 'form' %>
+      <%= link_to 'Show', @song, class: "create_button" %> |
+      <%= link_to 'Back', songs_path, class: "create_button" %>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,7 @@ if Instrument.count == 0
 	puts "Adds the instruments"
 	Instrument.create!(name: "Guitar")
 	Instrument.create!(name: "Drums")
-	Instrument.create!(name: "Bass Guitar")
+	Instrument.create!(name: "Bass")
 	Instrument.create!(name: "Keyboard")
 end
 

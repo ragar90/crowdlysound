@@ -4,13 +4,13 @@
   Mute note:<%= check_box_tag "mute-input","X", false, id: "mute-input", id: "mute-input", data:{checked: false} %>
   String: <%= number_field_tag "string-input", "", class: "composert-number-input", id: "string-input" %>
   Duration: <%= select_tag "duration-select",  options_for_select(DURATIONS), id: "duration-select" %>
-  <%= link_to "Insert Note", "#composer", class: "composer-btn", id: "note-btn" %>
+  <%= link_to "Insert Note", "#composer", class: "create_button", id: "note-btn" %>
 </div>
 <div class = "composer-input chords-input">
   Chords: <%= select_tag "chords-select", options_for_select(CHORDS), id: "chords-select" %>
-  <%= link_to "Insert Chord", "", class: "composer-btn", id: "chord-btn" %>
+  <%= link_to "Insert Chord", "", class: "create_button", id: "chord-btn" %>
 </div>
 <div class = "composer-input bar-input">
   Insert Bar: <%= select_tag "bar-select", options_for_select(BARS), id: "bar-select" %>
-  <%= link_to "Insert Bar", "", class: "composer-btn", id: "bar-btn" %>
+  <%= link_to "Insert Bar", "", class: "create_button", id: "bar-btn" %>
 </div>
