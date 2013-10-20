@@ -47,7 +47,7 @@
 
 		<div class="right_panel">
 
-			<%= link_to "What is Crowdly Sound?", what_is_crowdly_sound_path %>
+			<%= link_to "What is Crowdly Sound?", what_is_crowdly_sound_path , :id =>"so_what"%>
 
 			<%= render :partial => "tab_container_item" , :object => @current_musician.songs.limit(10) ,:locals => {:title_tab => "Your Songs", :url_name => "song"}%>
 
