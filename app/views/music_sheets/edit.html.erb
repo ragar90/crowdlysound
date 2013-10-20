@@ -1,6 +1,13 @@
-<h1>Editing music_sheet</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', song_music_sheet_path(song_id: @song.id, id: @music_sheet.id) %> |
-<%= link_to 'Back', song_music_sheets_path %>
+<div id="page_container" class="bands">
+  <%= render :partial => "header_user_info" , :object =>  @current_musician%>
+  <div id = "song_content">
+    <div class = "center_page">
+      <p id="notice"><%= notice %></p>
+      <h1 class = "simple_title">Editing <%= @music_sheet.instrument.name.titleize %> Music Sheet for <%= @music_sheet.song.name.titleize %></h1>
+      <div class = "simple_form"><%= render 'form' %></div>
+      <div style = "margin-top: 20px;">
+        <%= link_to 'Show', song_music_sheet_path(song_id: @song.id, id: @music_sheet.id), class: "create_button" %> | <%= link_to 'Back', song_music_sheets_path, class: "create_button" %>
+      </div>
+    </div>
+  </div>
+</div>

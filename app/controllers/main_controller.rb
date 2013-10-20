@@ -22,9 +22,9 @@ class MainController < ApplicationController
 	  		MusicTaste.create!(genre_id: genre.id, musician_id: guest.id)
 	  	}
 
-		total_band = Band.count
-		band = Band.new(name: "Band #{total_band}")
-		band.save
+  		total_band = Band.count
+  		band = Band.new(name: "Band #{total_band}")
+  		band.save
 
 		Agrupation.create!(member_id: guest.id, band_id: band.id, is_leader: true)
 		Musician.order("id ASC").limit(3).map{ |musician|
@@ -67,6 +67,14 @@ class MainController < ApplicationController
 	end
 	
   	redirect_to root_path
+  end
+
+  def genres_token_input
+    @genres = Genre.where("name like ?", "%#{params[:q]}%").map{|genre| {id: genre.id, name: genre.name}}
+    respond_to do |format|
+      format.html{}
+      format.json{ render json: @genres}
+    end
   end
 
   def index

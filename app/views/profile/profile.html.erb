@@ -74,9 +74,8 @@
 							<%= link_to "create a new here", new_song_path%>
 						</span>
 					<% else%>
-					<%#= render :partial => "slide_songs" , :object => @musician.songs %>
-					<%= render :partial => "min_slide_items", :object => @musician.songs,
-						:locals => {:name_partial => "song"} %>
+						<%#= render :partial => "slide_songs" , :object => @musician.songs %>
+						<%= render :partial => "min_slide_items", :object => @musician.songs, :locals => {:name_partial => "song"} %>
 					<% end %>
 					<%#= render :partial => "song", :collection => @musician.songs %>
 				</div>

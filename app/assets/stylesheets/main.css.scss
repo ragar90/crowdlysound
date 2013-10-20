@@ -603,3 +603,77 @@ div#search_items{
  }
 
 }
+ul.tags{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  li{
+    font-size:14px;
+    color:#FFF;
+    background:#38606e;
+    padding:8px 10px;
+    font-weight:bold;
+    display:inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  li {
+    position: relative;
+    background: #38606e;
+  }
+  li:after {
+    left: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  li:after {
+    border-color: rgba(56, 96, 110, 0);
+    border-left-color: #38606e;
+    border-width: 9px;
+    top: 50%;
+    margin-top: -9px;
+  }
+}
+div.rock-item{
+  display:inline-block; 
+  font-size:12px; 
+  font-weight:lighter; 
+  margin-left: 9px; 
+  color:#2c539e;
+}
+div.tab-container{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+div.composer-toolbar{
+  input[type="number"]{
+    width: 50px;
+  }
+  .create_button{
+    padding: 8px 10px;
+  }
+  .composer-input{
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+}
+div.casting-oppotunities-list{
+  li{
+    display: block;
+    list-style-type: none;
+    ul.casting-requirements{
+      li{list-style-type: circle;}
+    }
+  }
+}
+h1.simple_title{
+  a{
+    &:hover{text-decoration:underline}
+    &:visited{text-decoration:underline}
+    &:active{text-decoration:underline}
+  }
+}

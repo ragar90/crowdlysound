@@ -20,7 +20,7 @@ class SongsController < ApplicationController
     Instrument.all.each do |instrument|
       @song.instrument_tags << InstrumentTag.new(instrument_id:instrument.id, written_by_me: false)
     end
-    @genres = Genre.all
+    @genres = @song.genres.map{|genre| {id: genre.id, name: genre.name}}.to_json
     @casting_setting = CastingSetting.new
     @filter_types = FilterType.all
     @band_id = 0
@@ -49,7 +49,7 @@ class SongsController < ApplicationController
 
   # GET /songs/1/edit
   def edit
-    @genres = Genre.all
+    @genres = @song.genres.map{|genre| {id: genre.id, name: genre.name}}.to_json
     @instruments_tags = @song.instrument_tags
     @filter_types = FilterType.all
   end
@@ -186,7 +186,7 @@ class SongsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
-      params[:song][:genre_ids].delete("") unless params[:song][:genre_ids].nil?
+      params[:song][:genre_ids] = params[:song][:genre_ids].split(",") unless params[:song][:genre_ids].nil?
       params[:song].permit!
     end
 
