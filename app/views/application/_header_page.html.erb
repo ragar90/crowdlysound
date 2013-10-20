@@ -24,10 +24,10 @@
 			</form>
 		</div> -->
 		<div class="user_info">
-			<%= link_to "javascript:;" , :class => "user_info_header"  do%>
+			<%= link_to profile_path, :class => "user_info_header"  do%>
 				<%= image_tag "user_image.png" %>
 				<div class="info_complementary">
-					<span class="name_user">Username</span>
+					<span class="name_user"><%= @current_musician.name %></span>
 					<span class="type_user">Musician</span>
 				</div>
 				<div class="clear"></div>
