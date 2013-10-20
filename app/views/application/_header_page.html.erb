@@ -24,7 +24,7 @@
 			</form>
 		</div> -->
 		<div class="user_info">
-			<%= link_to profile_path, :class => "user_info_header"  do%>
+			<%= link_to profile_path, :class => "user_info_header"  ,:data => "no-turbolinkdo" do%>
 				<%= image_tag "user_image.png" %>
 				<div class="info_complementary">
 					<span class="name_user"><%= @current_musician.name %></span>

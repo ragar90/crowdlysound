@@ -210,6 +210,35 @@ div.tab_container{
 		@include rounded(0 0 4px 4px);
 	}
 }
+//=======================================
+div#main_header{
+	background-attachment: fixed;
+	width: 100%;
+	//height: auto;
+	position: relative;
+	background:transparent url(/assets/background_image.jpg) no-repeat;
+	//min-height:200px;
+	div.center_page{
+		text-align:center;
+		padding:40px 0;
+		a{
+			margin:0 40px;
+			img{
+				width:20%;
+				@include animation;
+			}
+
+		}
+		a:hover{
+			img{
+				@include transformAnimation;
+			}
+		}
+	}
+}
+//=======================================
+
+
 @keyframes "music" {
 	0%,100% {
 	-webkit-transform: translate3d(0,-10px,0);
