@@ -19,4 +19,23 @@ class Musician < ActiveRecord::Base
       #Error Messages
     end
   end
+
+  def can_edit_music_sheet?(music_sheet)
+    cowriter = self.cowriters.where(coauthored_song_id: song.id).first
+    return can_edit_song?(music_sheet.song) and cowriter.instrument_id == music_sheet.instrument_id
+  end
+
+  def can_edit_song?(song)
+    if song.owner_id == self.id and song.owner_type == self.class.to_s
+      true
+    elsif self.coauthored_song_ids.include?(song.id)
+      true
+    else
+      false
+    end
+  end
+
+
+
+
 end

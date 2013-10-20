@@ -1,4 +1,12 @@
 <p id="notice"><%= notice %></p>
+<div class = "sheet-container">
+  <div class="vex-tabdiv" width=700 scale=1.0 editor="false" editor_width=720 editor_height=220>
+    <%= music_sheet.notes %>
+  </div>
+  <%= link_to "Edit this sheet", edit_song_music_sheet_path(song_id: @song.id, id: @music_sheet.id) %>
+  <%= link_to 'Back', song_music_sheets_path %>
+</div>
 
-<%= link_to 'Edit', edit_music_sheet_path(@music_sheet) %> |
-<%= link_to 'Back', music_sheets_path %>
+<div class = "comments">
+  <%= render partial: "/comments/index" %>
+</div>
