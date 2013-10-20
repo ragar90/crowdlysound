@@ -13,11 +13,16 @@
     <li> <%= genre.name.titleize %></li>
   <% end %>
 </ul>
+
 <% @song.music_sheets.each do |music_sheet| %>
   <div class = "tab-container">
     <h3> <%= music_sheet.instrument.name.titleize %></h3>
       <div class="vex-tabdiv" width=700 scale=1.0 editor="false" editor_width=720 editor_height=220> <%= music_sheet.notes %></div>
       <%= link_to "Edit", edit_song_music_sheet_path(song_id:@song.id, id:music_sheet.id) %>
+      
+      <div>
+        <%= render :partial => "rocks/rock", :locals => {item: music_sheet} %>
+      </div>
   </div>
 <% end %>
 
