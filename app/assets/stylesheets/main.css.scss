@@ -448,7 +448,8 @@ div#header_profile{
 		
 	}
 
-div#follow_user{
+div#follow_user,
+div#follow_band{
 	display:block;
 	margin-top:30px;
 	a.follow_bottom{
@@ -480,9 +481,16 @@ div#follow_user{
 		background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%); /* W3C */
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
 		color:#444;
-
+		@include textShadow(1px 1px 0px, #444);
 	}
 }
+ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
+	background:#FFF;
+	font-size:12px;
+	height: 200px; overflow-y: scroll; overflow-x: hidden;
+	z-index:2000;
+}
+
 @keyframes "music" {
 	0%,100% {
 	-webkit-transform: translate3d(0,-10px,0);
