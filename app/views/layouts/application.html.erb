@@ -5,7 +5,6 @@
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application"%>
   <link href='http://fonts.googleapis.com/css?family=Alex+Brush|Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
-  
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -14,6 +13,8 @@
 	<%= render :partial => "header_page" if controller.action_name != "landing_page"%>
 	<%#= render :partial => "menu_header" %>
 	<%= yield %>
+	<div class="clear"></div>
+	<%= render :partial => "footer_page" if controller.action_name != "landing_page"%>
 </div>
 <%= yield(:vextab) %>
 </body>

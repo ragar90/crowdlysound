@@ -4,7 +4,7 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.all
+    @songs = @current_musician.songs
   end
 
   # GET /songs/1
@@ -23,6 +23,28 @@ class SongsController < ApplicationController
     @genres = Genre.all
     @casting_setting = CastingSetting.new
     @filter_types = FilterType.all
+    @band_id = 0
+  end
+
+  def new_band_song
+    @band = Band.find(params[:band_id])
+
+    if @current_musician.belongs_to_band?(@band.id)
+      @song = Song.new
+      Instrument.all.each do |instrument|
+        @song.instrument_tags << InstrumentTag.new(instrument_id:instrument.id, written_by_me: false)
+      end
+      @genres = Genre.all
+      @casting_setting = CastingSetting.new
+      @filter_types = FilterType.all
+
+      @band_id = @band.id
+
+      render "new"
+    else
+      redirect_to bands_path
+      return
+    end
   end
 
   # GET /songs/1/edit
@@ -36,8 +58,21 @@ class SongsController < ApplicationController
   # POST /songs.json
   def create
     @song = Song.new(song_params)
-    #@song.owner_id = current_musician.id
-    #@song.owner_type = current_musician.class.to_s
+
+    if params[:band_id].to_i == 0
+      @song.owner_id = @current_musician.id
+      @song.owner_type = @current_musician.class.to_s
+    else
+      @band = Band.find(params[:band_id]) rescue nil
+      if !@band.nil? && @current_musician.belongs_to_band?(@band.id)
+        @song.owner_id = @band.id
+        @song.owner_type = @band.class.to_s
+      else
+        redirect_to bands_path
+        return
+      end
+    end
+
     if casting_setting_params
       casting_setting = CastingSetting.new(casting_setting_params)
       if casting_setting.valid?
@@ -47,6 +82,12 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       if @song.save
+        if @song.owner_type == "Band"
+          @band.members.map{ |member|
+            Cowriter.create!(coauthor_id: member.id, coauthored_song_id: @song.id)
+          }
+        end
+
         @song.instrument_tags.each do |tag|
           @song.music_sheets << MusicSheet.new(instrument_id: tag.instrument_id) if tag.written_by_me
         end

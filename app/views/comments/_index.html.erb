@@ -1,6 +1,6 @@
 <% @comments.each do |comment| %>
   <div class = "comment-display">
-    <%= render partial: "show", locals:{comment:comment} %>
+    <%= render partial: "comments/show", locals:{comment:comment} %>
   </div>
 <% end %>
 <div class = "new-comment-form">

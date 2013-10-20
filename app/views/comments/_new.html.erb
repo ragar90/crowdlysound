@@ -1,5 +1,6 @@
-<% if !current_musician.is_guest_user rescue true %>
-  <% new_comment = Coment.new(author_id: current_musician.id, comentable_id: comentable.id, comentable_type: comentable.class.to_s ) %>
+
+<% if !@current_musician.is_guest_user %>
+  <% new_comment = Coment.new(author_id: @current_musician.id, comentable_id: comentable.id, comentable_type: comentable.class.to_s ) %>
   <% form_for new_comment do |f| -%>
     <%= f.hiden_field :author_id %>
     <%= f.hiden_field :comentable_id %>

@@ -1,75 +1,20 @@
-<div class="main_header">
-	<!-- fonts music -->
-	<div class="notes_container">
-		<ul id="music_notes">
-			<li>&#9833;</li>
-			<li>&#9834;</li>
-			<li>&#9835;</li>
-			<li>&#9836;</li>
-			<li>&#9833;</li>
-			<li>&#9834;</li>
-			<li>&#9835;</li>
-			<li>&#9836;</li>
-			<li>&#9837;</li>
-			<li>&#9839;</li>  
-			<li>&#9833;</li>
-			<li>&#9834;</li>
-			<li>&#9835;</li>
-			<li>&#9836;</li>
-			<li>&#9833;</li>
-			<li>&#9834;</li>
-			<li>&#9835;</li>
-			<li>&#9836;</li>
-			<li>&#9837;</li>
-			<li>&#9839;</li>  
+<div id="main_header" data-slide="1" data-stellar-background-ratio="0.5">
+		<div class="center_page">
+			<%=link_to image_tag("new_song_logo.png"), new_song_path, :title =>"Create new Song"%>
+			<%=link_to image_tag("new_band_logo.png"), new_band_path, :title =>"Create New Band"%>
+			<%=link_to image_tag("search_logo.png"), "javascript:;", :title =>""%>
 
-		</ul>
-	</div>
-	<!--  -->
-	<div class="center_page">
-		<div class="links_page">
-			<%= link_to "javascript:;" , :class =>"links_circles cirlce_1" do%>
-				<%= image_tag "icon_song.fw.png"%>
-			<% end -%>
 
-			<%= link_to "javascript:;" , :class =>"links_circles cirlce_2" do%>
-				<%= image_tag "icon_band.fw.png"%>
-			<% end -%>
-
-			<%= link_to "javascript:;" , :class =>"links_circles cirlce_3" do%>
-				<%= image_tag "icon_explor.fw.png" %>
-			<% end -%>
 		</div>
 	</div>
-</div>
-<div class="space_index"></div>
+	<div class="clear"></div>
+	<div id="page_container">
+		<div class="center_page">
+		<%= render :partial => "menu_options" %>
 
-	<div class="panels_user_index">
-		<div class="center_page panels_container">
-		<div class="left_panel">
-			<ul class="notice">
-				  <% for item in 1..25 %>
-				    <li>
-				    	<div class="alert_item">
-				    		<%= link_to "Name person", "javascript"%> notice text
-				    	</div>
-					</li>
-				  <% end %>
-			</ul>
-		</div>
-		<div class="right_panel">
-			<div class="tab_container">
-				<div class="tab_header">
-					<h1 class="title">
-						Title tab
-					</h1>
-				</div>
-				<div class="tab_items">
-
-				</div>
-			</div>
-
-		</div>
+		<div id="render_information"></div>
 		<div class="clear"></div>
+		</div>
+	<div class="clear"></div>
 	</div>
-</div>
+<div class="clear"></div>
