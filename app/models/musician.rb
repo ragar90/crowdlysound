@@ -134,6 +134,9 @@ class Musician < ActiveRecord::Base
     instruments_ids = instruments.collect{ |i| i.id }
     Song.where("genre_tags.genre_id IN (?) OR instrument_tags.instrument_id IN (?)", genres_ids, instruments_ids).joins(:genre_tags, :instrument_tags).order("updated_at DESC").limit(total).group("songs.id")
   end
+
+  def make_search(value)
+  end
   
   private
     def encrypt_password
