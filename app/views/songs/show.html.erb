@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>
+<% if @current_musician.can_edit_song?(@song) %>
+	<%= link_to 'Edit', edit_song_path(@song) %> |
+	<%= link_to 'Go to your songs', songs_path %>
+<% end %>
 
 <h1> <%= @song.name.titleize %></h1>
 <p> <%= @song.description %></p>
@@ -20,7 +22,7 @@
 <% end %>
 
 <div class = "comments">
-  <%#= render partial: "/comments/index" %>
+  <%= render partial: "/comments/index" %>
 </div>
 <%= content_for :vextab do %>
   <%= javascript_include_tag "vextab/vexflow-min" %>

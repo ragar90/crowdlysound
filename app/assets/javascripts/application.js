@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require_tree .
 //= require main.js
 //= require_directory .
-
 
 var cache = {}; //For caching in auto-complete of band members

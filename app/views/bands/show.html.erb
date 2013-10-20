@@ -27,8 +27,13 @@
 		<%= render :partial => "musician", :collection => @band.members %>
 	</div>
 
+	<div id="band_songs">
+		<%= render :partial => "song", :collection => @band.songs %>
+	</div>
+
+	<%= link_to "New song", new_band_song_path(@band.id) %>
+
 	<% if @band.includes_member?(@current_musician.id) && @current_musician.leader_of(@band.id) %>
-		<%= link_to 'Edit', edit_band_path(@band) %> |
+		<%= link_to 'Edit band', edit_band_path(@band) %>
 	<% end %>
-	<%= link_to 'Back', bands_path %>
 </div>
