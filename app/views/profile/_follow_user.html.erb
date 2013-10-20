@@ -1,4 +1,3 @@
-
 <% if @current_musician.id != @musician.id %>
 	<%= hidden_field_tag :follow_musician_id, @musician.id %>
 	<% if !@current_musician.follows_user(@musician) %>

@@ -1,31 +1,27 @@
-<%= form_for([@song,@music_sheet]) do |f| %>
-  <% if @music_sheet.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@music_sheet.errors.count, "error") %> prohibited this music_sheet from being saved:</h2>
+<div class = "simple_form">
+  <%= form_for([@song,@music_sheet]) do |f| %>
+    <%= f.hidden_field :notes, style: "display:hidden" %>
 
-      <ul>
-      <% @music_sheet.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div class = "vextab-composer">
+      <div class = "composer-toolbar">
+        <%= render partial: "composer_toolbar" %>
+      </div>
+      <div id= "composer" class="vex-tabdiv music-sheet-editor" width=700 scale=1.0 editor="true" editor_width=720 editor_height=220><%= @music_sheet.notes %></div>
+    </div>
+    
+    <div class="actions">
+      <%= f.submit %>
+      <%= button_to "Show music sheet", song_music_sheet_path(song_id: @song.id, id: @music_sheet.id), :method => "get" %>
+      <%= button_to "Show all music sheets", song_music_sheets_path, :method => "get" %>
     </div>
   <% end %>
-  <h1> <%= @music_sheet.instrument.name.titleize %></h1>
-  <%= f.hidden_field :notes, style: "display:hidden" %>
+  
+  <br /><br />
+  <h1 class="title">For more information About the markup language visit <%= link_to "The VexTab Tutorial", "http://vexflow.com/vextab/tutorial.html", target: :blank%> </h1>
 
-  <div class = "vextab-composer">
-    <div class = "composer-toolbar">
-      <%= render partial: "composer_toolbar" %>
-    </div>
-    <div id= "composer" class="vex-tabdiv music-sheet-editor" width=700 scale=1.0 editor="true" editor_width=720 editor_height=220><%= @music_sheet.notes %></div>
-  </div>
-<div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-<h1>For more information About the markup language visit <%= link_to "The VexTab Tutorial", "http://vexflow.com/vextab/tutorial.html", target: :blank%> </h1>
-<%= content_for :vextab do %>
-  <%= javascript_include_tag "vextab/vexflow-min" %>
-  <%= javascript_include_tag "vextab/underscore-min" %>
-  <%= javascript_include_tag "vextab/tabdiv-min" %>
-<% end %>
+  <%= content_for :vextab do %>
+    <%= javascript_include_tag "vextab/vexflow-min" %>
+    <%= javascript_include_tag "vextab/underscore-min" %>
+    <%= javascript_include_tag "vextab/tabdiv-min" %>
+  <% end %>
+</div>
