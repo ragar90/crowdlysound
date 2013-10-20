@@ -1,0 +1,47 @@
+<%= form_for(@song) do |f| %>
+  <% if @song.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
+      <ul>
+      <% @song.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = "input">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class = "input">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class = "input instrument-tags">
+    <%= f.fields_for :instrument_tags do |builder| %>
+      <h1> <%= builder.object.instrument.name.titleize %></h1>
+      <%= builder.hidden_field :id %>
+      <%= builder.hidden_field :instrument_id %>
+      <%= builder.label :written_by_me %> : <%= builder.check_box :written_by_me %>
+    <% end %>
+  </div>
+
+  <div class = "input genres-tags">
+    <%= f.label :genre_ids, "Genres" %> : <%= f.collection_check_boxes :genre_ids, @genres, :id, :name %>
+  </div>
+
+  <% if params[:band] == "true" %>
+      <div class = "input casting-settings">
+        <h2>Casting Settings</h2>
+        <%=label :casting_settings, :filter_type_id, "Filter Type" %> : <%= collection_select(:casting_settings, :filter_type_id, @filter_types, :id, :title_name) %>
+      </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -3,6 +3,7 @@ class CreateCowriters < ActiveRecord::Migration
     create_table :cowriters do |t|
       t.integer :coauthor_id
       t.integer :coauthored_song_id
+      t.integer :casting_id
 
       t.timestamps
     end

@@ -50,3 +50,10 @@ group :production do
   gem 'mysql2' # If using mysql in development, this can be outside the production group.
   gem 'therubyracer'
 end
+
+group :development, :test do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  gem 'railroady'
+end
