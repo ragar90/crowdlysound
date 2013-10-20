@@ -1,0 +1,34 @@
+<h1>Listing bands</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bands.each do |band| %>
+      <tr>
+        <td><%= band.name %></td>
+        <td><%= band.description %></td>
+        <td><%= link_to 'Show', band %></td>
+        <% if @current_musician.leader_of(band.id) %>
+          <td><%= link_to 'Edit', edit_band_path(band) %></td>
+          <td><%= link_to 'Remove', band, method: :delete, data: { confirm: 'Are you sure you want to remove this band?' } %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Band', new_band_path %>

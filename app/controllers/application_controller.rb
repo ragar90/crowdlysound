@@ -5,9 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :check_musician
 
-  def check_musician
+  def check_musician   
   	if session[:musician_id].nil?
+  		@current_musician = nil
   		redirect_to landing_page_path
+  	else
+  		@current_musician = Musician.find(session[:musician_id])
   	end
   end
 
