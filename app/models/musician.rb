@@ -37,6 +37,7 @@ class Musician < ActiveRecord::Base
     end
   end
 
+<<<<<<< HEAD
   def self.find_musician(term, band_id = 0)
     if band_id == 0
       where("name LIKE '%#{term}%' OR email LIKE '%#{term}%'")
@@ -76,6 +77,21 @@ class Musician < ActiveRecord::Base
   def unfollow_band(tmp_band)
     FollowBand.find_by_band_id_and_musician_id(tmp_band.id, self.id).destroy!
   end
+
+  def can_edit_music_sheet?(music_sheet)
+    cowriter = self.cowriters.where(coauthored_song_id: song.id).first
+    return can_edit_song?(music_sheet.song) and cowriter.instrument_id == music_sheet.instrument_id
+  end
+
+  def can_edit_song?(song)
+    if song.owner_id == self.id and song.owner_type == self.class.to_s
+      true
+    elsif self.coauthored_song_ids.include?(song.id)
+      true
+    else
+      false
+    end
+  end
   
   private
     def encrypt_password
@@ -84,5 +100,4 @@ class Musician < ActiveRecord::Base
         self.password_digest = BCrypt::Engine.hash_secret(password, salt)
       end
     end
-
 end

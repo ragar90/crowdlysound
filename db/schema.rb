@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20131020011639) do
     t.integer  "coauthor_id"
     t.integer  "coauthored_song_id"
     t.integer  "casting_id"
+    t.integer  "instrument_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
