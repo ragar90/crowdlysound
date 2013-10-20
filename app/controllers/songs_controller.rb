@@ -34,7 +34,7 @@ class SongsController < ApplicationController
       Instrument.all.each do |instrument|
         @song.instrument_tags << InstrumentTag.new(instrument_id:instrument.id, written_by_me: false)
       end
-      @genres = Genre.all
+      @genres = @song.genres.map{|genre| {id: genre.id, name: genre.name}}.to_json
       @casting_setting = CastingSetting.new
       @filter_types = FilterType.all
 
