@@ -11,6 +11,10 @@ div#page_container.profile{
 		position: relative;
 		background:transparent url(/assets/background_image.jpg) no-repeat;
 		//min-height:200px;
+		-webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  -o-background-size: cover;
+		  background-size: cover;
 		div.center_page{
 			padding:25px 0;
 			img.user_image{
