@@ -88,14 +88,8 @@ class Musician < ActiveRecord::Base
 
   ######################## PERMISSIONS
   def can_edit_music_sheet?(music_sheet)
-<<<<<<< HEAD
     cowriter = self.cowriters.where(coauthored_song_id: music_sheet.song.id).first
     return (can_edit_song?(music_sheet.song) and cowriter.instrument_id == music_sheet.instrument_id)
-=======
-    cowriter = self.cowriters.where(coauthored_song_id: song.id).first
-    #return can_edit_song?(music_sheet.song) && cowriter.instrument_id == music_sheet.instrument_id
-    return can_edit_song?(music_sheet.song)
->>>>>>> a46dcb3ab3192bf564ad2c0b842f15faacf7d16d
   end
 
   def can_edit_song?(song)

@@ -13,4 +13,5 @@ jQuery ->
     else
       vextab_note = ":#{duration_val} #{fret_val}/#{string_val}"
     $(".vextab-composer .vex-tabdiv textarea.editor").val(vextab_note)
-  $("#mute-input").on "click"
+  $("#mute-input").on "click", ->
+    console.log "ksksk"
