@@ -1,4 +1,8 @@
 CrwoudlySound::Application.routes.draw do
+  scope :castings do
+    get "" => "castings#index", as: :castings
+    post "apply/:song_id/for/:instrument_id" => "castings#apply", as: :apply_casting
+  end
   root 'main#index'
   get "landing_page" => "main#landing_page", as: :landing_page
   get "login_as_guest" => "main#login_as_guest", as: :login_as_guest

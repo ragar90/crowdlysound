@@ -25,7 +25,7 @@ class MusicSheetsController < ApplicationController
   def update
     respond_to do |format|
       if @music_sheet.update(music_sheet_params)
-        format.html { redirect_to @music_sheet, notice: 'Music sheet was successfully updated.' }
+        format.html { redirect_to song_path(id: @song.id), notice: 'Music sheet was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
