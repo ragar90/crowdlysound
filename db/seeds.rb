@@ -115,12 +115,23 @@ if Musician.count == 0
 end
 
 if FollowUser.count == 0
-	puts "Add followers"
+	puts "Add followers to users"
 	musicians = Musician.order("id ASC")
 	musicians.map { |musician|
 		tmp_musicians = Musician.where("id>? AND id<? AND id<>?", musician.id - 5, musician.id + 5, musician.id)
 		tmp_musicians.map{ |tmp_musician|
 			musician.follow(tmp_musician)
+		}		
+	}
+end
+
+if FollowBand.count == 0
+	puts "Add followers to bands"
+	bands = Band.order("id ASC")
+	bands.map { |band|
+		tmp_musicians = Musician.order("id ASC").limit(14)
+		tmp_musicians.map{ |tmp_musician|
+			tmp_musician.follow_band(band)
 		}		
 	}
 end
