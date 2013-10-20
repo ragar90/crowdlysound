@@ -1,19 +1,26 @@
-$(document).ready(function(){
-	resizeBackground();
-	var pre = ('animation');
-	pre.replace(/([A-Z])/g, function(str,m1){ return '-' + m1.toLowerCase(); }).replace(/^ms-/,'-ms-');
-
-	for(var i=0;i< $('ul#music_notes li').length;i++) {
-	    var x = $('ul#music_notes li')[i];
-	  $(x).css(pre,'music 3s '+i+'00ms  ease-in-out both infinite');
-	  $(x).addClass("element_"+i)
-	}
+$(function() {
+   initPage();
 });
-
 $(window).resize(function(){
 	resizeBackground();
 })
+ $(window).scroll(function () {
+ 	//if ($("div#header").hasClass("index_page")) {
+		// console.log(window.pageYOffset); 
+		// if (window.pageYOffset > 220) {
+		// 	$("div#header").removeClass("index_page")
+		// }else if (window.pageYOffset < 219) {
+		// 	$("div#header").addClass("index_page")
+		// }else if (window.pageYOffset < 0) {
 
+		// }
+ 	//};
+    // if (window.pageYOffset > 225) {
+    //     $('.previewElement').animate({'top':(window.pageYOffset - 225)},20);
+    // }else{
+    //     $('.previewElement').animate({top:0},20);
+    // }
+});
 function resizeBackground(){
 	width_page = $(window).width();
 	heigth_page = $(window).height();
@@ -28,3 +35,22 @@ function resizeBackground(){
 		width: width_page
 	})
 }
+//This is my document.ready
+function initPage(){
+
+	resizeBackground();
+	var pre = ('animation');
+	pre.replace(/([A-Z])/g, function(str,m1){ return '-' + m1.toLowerCase(); }).replace(/^ms-/,'-ms-');
+
+	for(var i=0;i< $('ul#music_notes li').length;i++) {
+	    var x = $('ul#music_notes li')[i];
+	  $(x).css(pre,'music 3s '+i+'00ms  ease-in-out both infinite');
+	  $(x).addClass("element_"+i)
+	}
+}
+//
+
+
+$(window).bind('page:change', function() {
+  initPage();
+})

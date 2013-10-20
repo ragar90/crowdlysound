@@ -140,12 +140,24 @@ div.center_page{
 	min-width:980px;
 	position:relative;
 }
-
+// Landing page
 div.landing_page_master{
 	width:100%;
 	height:100%;
 	position:relative;
 	@include tableCell;
+	div.what_is_this{
+		position:absolute;
+		right:5%;
+		top:0;
+		background:#104051;
+		color:#FFF;
+		font-size:13px;
+		padding:10px;
+		z-index:10;
+		font-weight:bold;
+	}
+	
 	div.image_background{
 		width:100%;
 		height:100%;
@@ -153,7 +165,8 @@ div.landing_page_master{
 		z-index:5;
 		top:0;
 		left:0;
-		 background: url(assets/music_notes_1.jpg) no-repeat center center; 
+		background: url(/assets/background_image.jpg) no-repeat center center; 
+
 		  -webkit-background-size: cover;
 		  -moz-background-size: cover;
 		  -o-background-size: cover;
@@ -163,10 +176,22 @@ div.landing_page_master{
 		position:relative;
 		z-index:10;
 		color:#FFF;
-		background: url(/assets/black_opacity.png) repeat; 
 		width:100%;
 		min-width:980px;
 		padding:15px 0;
+		text-align:center;
+		div.center_page{
+			width:600px !important;
+			min-width:600px !important;
+			padding:20px;
+			background: url(/assets/white_opacity.png) repeat; 
+			margin:0 auto;
+			@include rounded(5px);
+			@include boxShadow(-2px 2px 12px, #222);
+		}
+		img.logo_landing{
+			max-width:50%;
+		}
 		h1.title{
 			font-family: 'Alex Brush', cursive;
 			font-size:94px;
@@ -175,6 +200,7 @@ div.landing_page_master{
 			font-weight:bold;
 			padding:0;
 			line-height:78px;
+			color:#104051;
 			@include textShadow($px:2px 1px 1px,$color:#444);
 		}
 		p.sub_title{
@@ -182,7 +208,8 @@ div.landing_page_master{
 			font-size:22px;
 			font-weight:bold;
 			text-align:center;
-			@include textShadow($px:2px 1px 1px,$color:#444);
+			//@include textShadow($px:2px 1px 1px,$color:#444);
+			color:#104051;
 		}
 		div.inputs{
 			padding:20px 0;
@@ -191,14 +218,7 @@ div.landing_page_master{
 			margin-top:15px;
 			a{
 				//@include black_easy_to_black_dark;
-				background: #499bea; /* Old browsers */
-				background: -moz-linear-gradient(top,  #499bea 0%, #207ce5 100%); /* FF3.6+ */
-				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#499bea), color-stop(100%,#207ce5)); /* Chrome,Safari4+ */
-				background: -webkit-linear-gradient(top,  #499bea 0%,#207ce5 100%); /* Chrome10+,Safari5.1+ */
-				background: -o-linear-gradient(top,  #499bea 0%,#207ce5 100%); /* Opera 11.10+ */
-				background: -ms-linear-gradient(top,  #499bea 0%,#207ce5 100%); /* IE10+ */
-				background: linear-gradient(to bottom,  #499bea 0%,#207ce5 100%); /* W3C */
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5',GradientType=0 ); /* IE6-9 */
+				background:#153F53;
 
 				@include rounded();
 				@include boxShadow();
@@ -211,30 +231,33 @@ div.landing_page_master{
 			}
 		}
 	}
-}
+}//div.landing_page_master
 
+//end Header
+
+div#header.index_page{
+	margin-top:-70px;
+	~ div.white_space_header{
+		width:100%;
+		//height:0px;
+	}
+}
 div#header{
 	background:#FFF;
+	@include animation;
 	@include boxShadow(0px 0px 12px, #444);
 	position:relative;
-	background: #fcfeff; /* Old browsers */
-	background: -moz-linear-gradient(top,  #fcfeff 0%, #f7f7f7 50%, #fcfeff 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcfeff), color-stop(50%,#f7f7f7), color-stop(100%,#fcfeff)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #fcfeff 0%,#f7f7f7 50%,#fcfeff 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #fcfeff 0%,#f7f7f7 50%,#fcfeff 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #fcfeff 0%,#f7f7f7 50%,#fcfeff 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #fcfeff 0%,#f7f7f7 50%,#fcfeff 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfeff', endColorstr='#fcfeff',GradientType=0 ); /* IE6-9 */
-	position:fixed;
+	background:#0a404f;
 	width:100%;
 	z-index:50;
 	a#page_logo{
 		font-family: 'Alex Brush', cursive;
-		color:#444;
+		color:#FFF;
 		font-size:34px;
-		@include textShadow($px:1px 1px 1px,$color:#666);
+		@include textShadow($px:2px 2px 1px,$color:#222);
 		font-weight:bold;
 		float:left;
+		padding:14px 0;
 	}
 	ul#menu_items{
 		float:left;
@@ -270,8 +293,38 @@ div#header{
 		width:100%;
 		height:44px;
 	}
-}
-
+	div.user_info{
+		float:right;
+		margin:12px 0;
+	}
+}//div.header
+div#footer{
+	div.copy_rigth.landing{
+		bottom:0;
+		left:0;
+		position:absolute;
+	}
+	div.copy_rigth{
+		background:#104051;
+		
+		width:100%;
+		
+		padding:5px 0;
+		z-index:10;
+		color:#FFF;
+		text-align:left;
+		font-size:12px;
+		font-weight:bold;
+		text-indent:15px;
+		//font-family: Aleo;
+		a{
+			//font-family: Aleo;
+		}
+		a:hover{
+			text-decoration:underline;
+		}
+	}
+}//div.footer
 div.form_search{
 	min-width:220px;
 	position:relative;
@@ -314,8 +367,65 @@ div.form_search{
 		cursor:pointer;
 	}
 }
+div.user_info{
+	a.user_info_header{
+		display:block;
+		width:150px;
+		img{
+			float:left;
+		}
+		div.info_complementary{
+			display: table-cell;
+			vertical-align: bottom;
+			height: 40px;
+			padding-left:5px;
+			span{
+				display:block;
+				color:#FFF;
+				font-weight:bold;
+			}
+			span.name_user{
+				font-size:13px;
+			}
+			span.type_user{
+				font-size:11px;
+			}
+		}
+	}
+}
+div.menu_options{
+	width:25%;
+	float:left;
+	padding:25px 0;
+	ul{
 
-
+		li{
+			padding-right:15px;
+			a{
+				display:block;
+				padding:15px 0;
+				color:#0a404f;
+				font-size:13px;
+				font-weight:bold;
+				border-bottom:1px dotted #0a404f;
+			}
+		}
+		li:last-child{
+			a{
+				border-bottom:none;
+			}
+		}
+	}
+}
+div#render_information{
+	width:74.9%;
+	float:right;
+	padding:25px 0;
+	margin-top:25px;
+	margin-bottom:25px;
+	border-left:1px dotted #0a404f;
+	min-height:600px;
+}
 
 
 

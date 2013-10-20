@@ -1,4 +1,6 @@
 <%= form_for(@song) do |f| %>
+  <%= hidden_field_tag :band_id, @band_id %>
+
   <% if @song.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
@@ -34,10 +36,10 @@
     <%= f.label :genre_ids, "Genres" %> : <%= f.collection_check_boxes :genre_ids, @genres, :id, :name %>
   </div>
 
-  <% if params[:band] == "true" %>
+  <% if @band_id == 0 %>
       <div class = "input casting-settings">
         <h2>Casting Settings</h2>
-        <%=label :casting_settings, :filter_type_id, "Filter Type" %> : <%= collection_select(:casting_settings, :filter_type_id, @filter_types, :id, :title_name) %>
+        <%=label :casting_settings, :filter_type_id, "Filter requests by" %>: <%= collection_select(:casting_settings, :filter_type_id, @filter_types, :id, :title_name) %>
       </div>
   <% end %>
 

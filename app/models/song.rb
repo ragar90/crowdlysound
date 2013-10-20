@@ -1,5 +1,6 @@
 class Song < ActiveRecord::Base
-  belongs_to :author,polymorphic: true
+  belongs_to :owner, polymorphic: true
+  belongs_to :cover_of, class_name: "Song"
   has_many :cowriters
   has_many :coauthors, through: :cowriters
   has_many :music_sheets
@@ -30,6 +31,7 @@ class Song < ActiveRecord::Base
         copy = self.dup
         copy.owner_id = musician.id
         copy.owner_type = musician.class.to_s
+        copy.cover_of_id = self.id
         if copy.save
           self.instrument_tags.each do |instrument_tag|
             copy.instrument_tags << instrument_tag.dup
@@ -50,4 +52,5 @@ class Song < ActiveRecord::Base
       end
     end
   end
+  
 end

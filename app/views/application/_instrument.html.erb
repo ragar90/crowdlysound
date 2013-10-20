@@ -1,0 +1,3 @@
+<div class="instrument <%= @musician_instruments.collect{ |i| i.id }.include?(instrument.id) ? 'ui-selected' : '' %> " data-insval="<%= instrument.id %>">
+	<%= instrument.name %>
+</div>
