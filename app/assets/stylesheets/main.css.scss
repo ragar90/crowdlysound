@@ -416,7 +416,8 @@ div#header_profile{
 		width: 100%;
 		//height: auto;
 		position: relative;
-		background:transparent url(/assets/background_image.jpg) no-repeat;
+    //background-image:image-url("background_image.jpg");
+		background:transparent image-url("background_image.jpg") no-repeat;
 		//min-height:200px;
 		-webkit-background-size: cover;
 		  -moz-background-size: cover;
