@@ -12,32 +12,12 @@ class MusicSheetsController < ApplicationController
   # GET /music_sheets/1
   # GET /music_sheets/1.json
   def show
-  end
-
-  # GET /music_sheets/new
-  def new
-    @music_sheet = MusicSheet.new
-    @music_sheet.song_id = @song.id
+    @comments = @music_sheet.comments
+    @coomentable = @music_sheet
   end
 
   # GET /music_sheets/1/edit
   def edit
-  end
-
-  # POST /music_sheets
-  # POST /music_sheets.json
-  def create
-    @music_sheet = MusicSheet.new(music_sheet_params)
-
-    respond_to do |format|
-      if @music_sheet.save
-        format.html { redirect_to @music_sheet, notice: 'Music sheet was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @music_sheet }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @music_sheet.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /music_sheets/1
@@ -45,7 +25,7 @@ class MusicSheetsController < ApplicationController
   def update
     respond_to do |format|
       if @music_sheet.update(music_sheet_params)
-        format.html { redirect_to @music_sheet, notice: 'Music sheet was successfully updated.' }
+        format.html { redirect_to song_path(id: @song.id), notice: 'Music sheet was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -54,20 +34,18 @@ class MusicSheetsController < ApplicationController
     end
   end
 
-  # DELETE /music_sheets/1
-  # DELETE /music_sheets/1.json
-  def destroy
-    @music_sheet.destroy
+  def rock
+    @music_sheet.rock_likes_count+=1
+    @music_sheet.save
     respond_to do |format|
-      format.html { redirect_to music_sheets_url }
-      format.json { head :no_content }
+      format.html { redirect_to root_path, notice: "This Song rocks you \\m/" }
+      format.json { render json: {message: "This Song rocks you \\m/"}, status: :created, location: @music_sheet }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_music_sheet
-      @song = Song.where(id: params[:song_id]).first
       @music_sheet = @song.music_sheets.where(id: params[:id]).first
     end
 

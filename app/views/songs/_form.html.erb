@@ -1,47 +1,54 @@
-<%= form_for(@song) do |f| %>
-  <% if @song.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
+<div class = "simple_form">
+  <%= form_for(@song) do |f| %>
+    <%= hidden_field_tag :band_id, @band_id %>
+    <div class = "field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
 
-      <ul>
-      <% @song.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+    <div class = "field">
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+
+    <div class = "field" style = "margin-bottom:20px;">
+      <%= f.label :genre_ids, "Genres" %>
+      <%= f.text_field :genre_ids %>
+    </div>
+
+    <% if @band_id == 0 %>
+        <div class = "field">
+          <h2>Casting Settings</h2>
+          <%=label :casting_settings, :filter_type_id, "Filter requests by" %> <%= collection_select(:casting_settings, :filter_type_id, @filter_types, :id, :title_name) %>
+        </div>
+    <% end %>
+
+    <div class = "field instrument-tags">
+      <h2>Select your Instrument</h2>
+      <%= f.fields_for :instrument_tags do |builder| %>
+        <%= builder.hidden_field :id %>
+        <%= builder.hidden_field :instrument_id %>
+        <div class = "instrument-btn">
+          <%= image_tag "#{builder.object.instrument.name.downcase}.png" %>
+          <div class = "instrument-btn-footer">
+            <%= builder.label :written_by_me, "I will write this" %> : <%= builder.check_box :written_by_me %>
+          </div>
+        </div>
       <% end %>
-      </ul>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
+  <script type="text/javascript">
+  $(document).ready(function () {
+      $("#song_genre_ids").tokenInput("<%= genres_token_input_path %>", {
+        prePopulate: <%= @genres.html_safe %>,
+        theme: "facebook",
+        preventDuplicates: true
+      });
+  });
+  </script>
 
-  <div class = "input">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class = "input">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class = "input instrument-tags">
-    <%= f.fields_for :instrument_tags do |builder| %>
-      <h1> <%= builder.object.instrument.name.titleize %></h1>
-      <%= builder.hidden_field :id %>
-      <%= builder.hidden_field :instrument_id %>
-      <%= builder.label :written_by_me %> : <%= builder.check_box :written_by_me %>
-    <% end %>
-  </div>
-
-  <div class = "input genres-tags">
-    <%= f.label :genre_ids, "Genres" %> : <%= f.collection_check_boxes :genre_ids, @genres, :id, :name %>
-  </div>
-
-  <% if params[:band] == "true" %>
-      <div class = "input casting-settings">
-        <h2>Casting Settings</h2>
-        <%=label :casting_settings, :filter_type_id, "Filter Type" %> : <%= collection_select(:casting_settings, :filter_type_id, @filter_types, :id, :title_name) %>
-      </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

@@ -1,0 +1,3 @@
+<div id="rock_<%= item.class.name + "_" + item.id.to_s %>" class = "rock-item">
+	<%= render :partial => "rocks/rock_content", :locals => {:item => item} %>
+</div>

@@ -1,0 +1,61 @@
+
+<%
+	cont=1
+	acum1=1
+	close = true
+%>
+<div class="other_products_related">
+		<h1 class="label_name_partial">
+			Other related products
+		</h1>	
+		<div class="clear"></div>
+		 <div id="slideshow_band" class="master_slider">
+		 <div class="slides">
+		 	<ul>
+		 		<%#= @related_products.inspect %>
+		 		<% slide_bands.map{ |band| %>
+		 		<%if acum1==1%>
+		 		<li id="slide-<%= cont %>">
+		 		<%close = true%>
+		 		<%end%>
+		 			<div class="product_info">
+	            		<%#= render :partial => "product_blocks/productBox", :object => band, :locals => {:show_more_information => "show"}%>
+	            		<%= render :partial => "band", :object => band%>
+	            		<div class="clear"></div>
+	        		</div>	
+	        	<%if acum1==1%>
+		 		</li>
+		 		<% close = false %>
+       			<% acum1 = 0 %>
+       			<% cont +=1 %>
+		 		<% end %>
+
+		 		<%acum1 +=1%>
+		 		<% } %>
+		 		 <%if close%>
+			      <div class="clear"></div>
+			          </li>
+			      <%end%>
+		 	</ul>
+	
+		 	<div class="navigator">
+		     <ul class="slides-nav">
+		        <% for i in 1 ..cont%>
+		          <li class=""><a href="#slide-<%=i%>"></a></li>
+		        <% end %>
+		     </ul>
+		    </div>
+		 </div>
+       	</div>    
+		<%#= render :partial => "more_information_product"%>
+		<%#= other_products_related.main_products.size%>
+		<%#= render :partial => "product_blocks/product", :collection => subcategory_list.main_products %>
+		 <script type="text/javascript">
+		   $(function(){
+		   		var time_exect = (300 * (+ 1))
+		   		setTimeout(function() {
+		   			$slideshow.init('#slideshow_band');	
+		   		}, time_exect);
+		   });
+		</script>
+</div><p></p>

@@ -1,0 +1,32 @@
+.instrument-tags{
+  z-index: -1;
+  margin-top: 30px;
+  .instrument-btn{
+    display:inline-block; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 345px;
+    img{
+      width: 100%;
+    }
+    .instrument-btn-footer{
+      font-size: 22px;
+      padding: 17px 20px;
+      background-color: #ddd;
+    }
+  }
+}
+.input-container{
+  padding:20px 10px;
+  border: 1px solid red;
+  .input{
+    border: 1px solid red;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .input-label{
+
+  }
+}

@@ -1,25 +1,31 @@
-<h1>Listing songs</h1>
+<div id = "page_container" class = "bands">
+  <%= render :partial => "header_user_info" , :object =>  @current_musician%>
+  <div id = "song_content">
+    <div class = "center_page">
+      <h1 class = "simple_title">Listing songs</h1>
+      <table class = "simple_table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @songs.each do |song| %>
-      <tr>
-        <td><%= link_to 'Show', song %></td>
-        <td><%= link_to 'Edit', edit_song_path(song) %></td>
-        <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Song', new_song_path %>
+        <tbody>
+          <% @songs.each do |song| %>
+            <tr>
+              <td><%= song.name %></td>
+              <td><%= link_to '', song, class: "show_form" %></td>
+              <td><%= link_to '', edit_song_path(song), class: "edit_form" %></td>
+              <td><%= link_to '', song, class: "delete_form",method: :delete, data: { confirm: 'Are you sure you want to remove this song?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+      <%= link_to 'New Song', new_song_path, class: "create_button" %>
+    </div>
+  </div>
+</div>

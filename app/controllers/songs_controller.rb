@@ -1,15 +1,17 @@
 class SongsController < ApplicationController
-  before_action :set_song, only: [:show, :edit, :update, :destroy, :castings, :cover]
+  before_action :set_song, except: [:new, :index ]
   #skip_before_filter :check_musician
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.all
+    @songs = @current_musician.songs
   end
 
   # GET /songs/1
   # GET /songs/1.json
   def show
+    @comments = @song.comments
+    @coomentable = @song
   end
 
   # GET /songs/new
@@ -18,14 +20,36 @@ class SongsController < ApplicationController
     Instrument.all.each do |instrument|
       @song.instrument_tags << InstrumentTag.new(instrument_id:instrument.id, written_by_me: false)
     end
-    @genres = Genre.all
+    @genres = @song.genres.map{|genre| {id: genre.id, name: genre.name}}.to_json
     @casting_setting = CastingSetting.new
     @filter_types = FilterType.all
+    @band_id = 0
+  end
+
+  def new_band_song
+    @band = Band.find(params[:band_id])
+
+    if @current_musician.belongs_to_band?(@band.id)
+      @song = Song.new
+      Instrument.all.each do |instrument|
+        @song.instrument_tags << InstrumentTag.new(instrument_id:instrument.id, written_by_me: false)
+      end
+      @genres = @song.genres.map{|genre| {id: genre.id, name: genre.name}}.to_json
+      @casting_setting = CastingSetting.new
+      @filter_types = FilterType.all
+
+      @band_id = @band.id
+
+      render "new"
+    else
+      redirect_to bands_path
+      return
+    end
   end
 
   # GET /songs/1/edit
   def edit
-    @genres = Genre.all
+    @genres = @song.genres.map{|genre| {id: genre.id, name: genre.name}}.to_json
     @instruments_tags = @song.instrument_tags
     @filter_types = FilterType.all
   end
@@ -34,8 +58,21 @@ class SongsController < ApplicationController
   # POST /songs.json
   def create
     @song = Song.new(song_params)
-    #@song.owner_id = current_musician.id
-    #@song.owner_type = current_musician.class.to_s
+
+    if params[:band_id].to_i == 0
+      @song.owner_id = @current_musician.id
+      @song.owner_type = @current_musician.class.to_s
+    else
+      @band = Band.find(params[:band_id]) rescue nil
+      if !@band.nil? && @current_musician.belongs_to_band?(@band.id)
+        @song.owner_id = @band.id
+        @song.owner_type = @band.class.to_s
+      else
+        redirect_to bands_path
+        return
+      end
+    end
+
     if casting_setting_params
       casting_setting = CastingSetting.new(casting_setting_params)
       if casting_setting.valid?
@@ -45,6 +82,12 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       if @song.save
+        if @song.owner_type == "Band"
+          @band.members.map{ |member|
+            Cowriter.create!(coauthor_id: member.id, coauthored_song_id: @song.id)
+          }
+        end
+
         @song.instrument_tags.each do |tag|
           @song.music_sheets << MusicSheet.new(instrument_id: tag.instrument_id) if tag.written_by_me
         end
@@ -98,11 +141,10 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       if @casting.save
-        format.html { redirect_to @casting, notice: 'Your Casting was send successfully' }
+        format.html { redirect_to root_path, notice: 'Your Casting was send successfully' }
         format.json { render action: 'show', status: :created, location: @casting }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @casting.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: 'Somthing went wrong with your application' }
       end
     end
   end
@@ -111,12 +153,29 @@ class SongsController < ApplicationController
     @casting = @song.castings.where(id: params[:casting_id]).first
     @casting.status = params[:status].to_i
     @casting.save
+    if @casting.status == 1
+      @song.cowriters << Cowriter.new(instrument_id: params[:instrument_id], coauthor_id: @casting.caster_id)
+    end
     redirect_to root_path
   end
 
   def cover
     @song.cover_for(current_musician)
     redirect_to root_path
+  end
+
+  def remove_cowriter
+    @song.cowriters.where(coauthor_id: params[:coauthor_id], instrument_id: params[:instrument_id]).first.destroy
+    redirect_to root_path
+  end
+
+  def rock
+    @song.rock_likes_count+=1
+    @song.save
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "This Song rocks you \\m/" }
+      format.json { render json: {message: "This Song rocks you \\m/"}, status: :created, location: @song }
+    end
   end
 
   private
@@ -127,7 +186,7 @@ class SongsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
-      params[:song][:genre_ids].delete("") unless params[:song][:genre_ids].nil?
+      params[:song][:genre_ids] = params[:song][:genre_ids].split(",") unless params[:song][:genre_ids].nil?
       params[:song].permit!
     end
 

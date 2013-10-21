@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require main.js
 //= require_directory .
+var cache = {}; //For caching in auto-complete of band members

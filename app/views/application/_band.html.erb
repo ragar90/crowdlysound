@@ -1,0 +1,6 @@
+<div class="item_slider band_item">
+	<%= link_to band_path(band) do%>
+		<%= image_tag "logo_only_min.png"%>
+		<span><%= truncate(band.name ,:length=>25 )%></span>
+	<% end -%>
+</div>

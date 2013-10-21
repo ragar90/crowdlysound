@@ -1,5 +1,6 @@
 class Song < ActiveRecord::Base
-  belongs_to :author,polymorphic: true
+  belongs_to :owner, polymorphic: true
+  belongs_to :cover_of, class_name: "Song"
   has_many :cowriters
   has_many :coauthors, through: :cowriters
   has_many :music_sheets
@@ -11,7 +12,11 @@ class Song < ActiveRecord::Base
   has_one :casting_setting
   has_many :instrument_tags
   has_many :instruments, through: :instrument_tags
+  has_many :rocks, :as => :content
   accepts_nested_attributes_for :instrument_tags
+
+  scope :for_castings, -> { joins(instrument_tags: :instrument).where("instrument_tags.written_by_me = ?", false).select("instrument_tags.instrument_id as instrument_id, instruments.name as instrument_name,songs.*").order("created_by desc") }
+
 
   def clean_written_instrument_dependency
     instrument_ids = self.instrument_tags.group_by{|tag| tag.written_by_me ? :written : :casting}
@@ -30,6 +35,7 @@ class Song < ActiveRecord::Base
         copy = self.dup
         copy.owner_id = musician.id
         copy.owner_type = musician.class.to_s
+        copy.cover_of_id = self.id
         if copy.save
           self.instrument_tags.each do |instrument_tag|
             copy.instrument_tags << instrument_tag.dup
@@ -50,4 +56,19 @@ class Song < ActiveRecord::Base
       end
     end
   end
+
+  def rocks_by(tmp_musician_id, action)
+    rock = Rock.find_by_content_id_and_content_type_and_musician_id(self.id, "Song", tmp_musician_id) rescue nil
+
+    if action == 1 && rock.nil?
+      Rock.create!(musician_id: tmp_musician_id, content_id: self.id, content_type: "Song")
+    elsif action == 0 && !rock.nil?
+      rock.destroy
+    end
+  end
+
+  def rocks_for?(tmp_musician_id)
+    !Rock.where(:content_id => self.id, :content_type => "Song", :musician_id => tmp_musician_id).empty?
+  end
+  
 end

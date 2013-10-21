@@ -1,0 +1,113 @@
+<div id="page_container" class="profile">
+	<div id="header_profile" data-slide="1" data-stellar-background-ratio="0.5">
+		<div class="center_page">
+			<%= image_tag "logo_only.png", :class => "user_image" %>
+
+			<div class="info_user">
+				<h1 class="title"><%= @musician.name %></h1>
+					<div>
+					<ul id="social_activity">
+						<li>
+							<%#= render :partial => "musician", :collection => @followings %>
+							<h1><%= @musician.followings.length %></h1>
+							<div class="clear"></div>
+							Following
+						</li>
+						<li>	
+							<%#= render :partial => "musician", :collection => @followers %>
+							<h1><%= @musician.followers.length %></h1>
+							<div class="clear"></div>
+							Followers
+						</li>
+						<li class="other">
+							<%#= render :partial => "band", :collection => @musician.following_bands %>
+							<h1><%= @musician.following_bands.length %></h1>
+							<div class="clear"></div>
+							Following bands
+						</li>
+						<li>
+							<div id="follow_user">
+								<%= render :partial => "follow_user" %>
+							</div>
+						</li>
+					</ul>
+					</div>
+					<div class="clear"></div>
+					
+			</div>
+		<div class="clear"></div>
+		</div>
+	</div>
+	<div class="center_page">
+		<div class="panel">
+			<div>
+			<h2 class="title">Genres</h2>
+
+				<% page_genres = @musician.id == @current_musician.id ? "clickiable_genres" : "" %>
+				<% page_instrument = @musician.id == @current_musician.id ? "clickiable_instrument" : "" %>
+				
+				<div id="genres" class="options_element <%=page_genres%>">
+					<%= render :partial => "genre", :collection => @all_genres, :locals => {special_class: page_genres} %>
+					<div class="clear"></div>
+				</div>
+				<%#= @all_genres.inspect %>
+
+			<div class="clear"></div>
+			<h2 class="title">Instruments</h2>
+				<div id="instruments" class="options_element <%= page_instrument %>">
+					<%= render :partial => "instrument", :collection => @all_instruments %>
+					<div class="clear"></div>
+				</div>
+		
+		</div>
+		
+		<%#= @musician_instruments.inspect %>
+		<div class="panel">
+
+			<div>			
+			<h2 class="title">Songs</h2>
+
+			<div class="items_collection">
+					<% if @musician.songs.size == 0%>
+						<span class="not_element">
+							Not have created songs, 
+							<%= link_to "create a new here", new_song_path%>
+						</span>
+					<% else%>
+						<%#= render :partial => "slide_songs" , :object => @musician.songs %>
+						<%= render :partial => "min_slide_items", :object => @musician.songs, :locals => {:name_partial => "song"} %>
+					<% end %>
+					<%#= render :partial => "song", :collection => @musician.songs %>
+				</div>
+			</div>
+
+			<div>
+				<h2 class="title"><%= link_to "Your bands", bands_path %></h2>
+
+				<div>
+					<% if @musician.bands.size == 0%>
+						<span class="not_element">
+							Not have created bands, 
+							<%= link_to "create a new here", new_song_path%>
+						</span>
+					<% else%>
+					<%= render :partial => "min_slide_items", :object => @musician.bands,
+						:locals => {:name_partial => "band"}%>
+					<% end -%>
+					<%#= render :partial => "band", :collection => @musician.bands %>
+				</div>
+			</div>	
+
+			<br />
+			<br />
+			<br />
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<% if @musician.id == @current_musician.id %>
+	<div>
+		<%#= link_to "Edit", edit_profile_path %>
+	</div>
+<% end %>

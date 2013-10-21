@@ -1,4 +1,25 @@
-<p id="notice"><%= notice %></p>
+ <div id="page_container" class="bands">
+    <%= render :partial => "header_user_info" , :object =>  @current_musician%>
+    <div id = "song_content">
+      <div class = "center_page">
+        <p id="notice"><%= notice %></p>
+        <div class = "sheet-container">
+          <h1 class = "simple_title"> <%= @music_sheet.instrument.name.titleize %> Tab for <%= @music_sheet.song.name.titleize %> <%= render :partial => "rocks/rock", :locals => {item: @music_sheet} %></h1>
+          <div class="vex-tabdiv" width=700 scale=1.0 editor="false" editor_width=720 editor_height=220>
+            <%= @music_sheet.notes %>
+          </div>
+          <%= link_to "Edit this sheet", edit_song_music_sheet_path(song_id: @song.id, id: @music_sheet.id), class: "create_button" %> | <%= link_to 'Back', song_path(id:@song.id), class: "create_button" %>
+        </div>
 
-<%= link_to 'Edit', edit_music_sheet_path(@music_sheet) %> |
-<%= link_to 'Back', music_sheets_path %>
+        <div class = "comments">
+          <%= render partial: "/comments/index" %>
+        </div>
+
+        <%= content_for :vextab do %>
+          <%= javascript_include_tag "vextab/vexflow-min" %>
+          <%= javascript_include_tag "vextab/underscore-min" %>
+          <%= javascript_include_tag "vextab/tabdiv-min" %>
+        <% end %>
+      </div>
+    </div>
+ </div>

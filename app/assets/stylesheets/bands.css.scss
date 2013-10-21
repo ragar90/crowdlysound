@@ -1,0 +1,57 @@
+// Place all the styles related to the bands controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "mixin.css.scss";
+
+div#page_container.bands{
+	div.center_page{
+		//width:800px;
+		//min-width:800px;
+	}
+	div#band_songs{
+		.simple_title{
+			margin:0;
+		}
+	}
+	div#xyelement{
+		width:800px;
+		a.user_member{
+			span{
+				display:block;
+				float:left;
+				margin-top:13px;
+			}
+			img{
+				float:left;
+			}
+		}
+		div.element{
+			width:50%;
+			float:left;
+		}
+		div#new_member_block{
+			width:100%;
+			padding:15px 0;
+			background:#EEE;
+			padding-left:20px;
+			border:1px solid #DDD;
+			label{
+				font-size:13px;
+			}
+			input#add_member{
+				font-size:13px;
+				padding:5px 0;
+				width:350px;
+			}
+			input[type="button"]{
+				background:#38606e;
+				color:#FFF;
+				font-size:12px;
+				border:none;
+				margin-left: -10px;
+				padding:7px 16px 6px 16px;
+			}
+		}
+	}
+}
